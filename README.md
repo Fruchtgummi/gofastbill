@@ -27,14 +27,9 @@ https://gowalker.org/github.com/Fruchtgummi/gofastbill
 Basic Usage
 -----------
 ~~~~
-import ara "github.com/Fruchtgummi/gofastbill"
 
-type Test struct {
-  ara.Document 
-  Name     string
-  Age      int
-  Likes    []string
-}
+STURCT
+
 ~~~~
 
 Authentication and Create a Invoice
