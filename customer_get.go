@@ -8,7 +8,7 @@ type CustomerGet_Request struct {
 	TERM            string `xml:"TERM,omitempty", json:"TERM,omitempty"`
 }
 
-//get gofastbill.CustomerGet_Request struct
+//GET Customer;
 func (s *Initialization) Customer_Get(req CustomerGet_Request) (*FBAPI, error) {
 
 	var fastbillbody string

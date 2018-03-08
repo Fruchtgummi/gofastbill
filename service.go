@@ -45,7 +45,10 @@ type REQUEST struct {
 }
 
 type RESPONSE struct {
-	CUSTOMERS CUSTOMERS `xml:"CUSTOMERS,omitempty", json:"CUSTOMERS,omitempty"`
+	STATUS      string `xml:"STATUS,omitempty", json:"STATUS,omitempty"`
+	CUSTOMER_ID string `xml:"CUSTOMER_ID,omitempty", json:"CUSTOMER_ID,omitempty"`
+
+	CUSTOMERS []CUSTOMER `xml:"CUSTOMERS,omitempty", json:"CUSTOMERS,omitempty"`
 }
 
 type FILTER struct {
@@ -61,20 +64,11 @@ type ERRORS struct {
 }
 
 type FBAPI struct {
-	SERVICE string `xml:"SERVICE,omitempty", json:"SERVICE,omitempty"`
-
+	SERVICE  string   `xml:"SERVICE,omitempty", json:"SERVICE,omitempty"`
+	DATA     DATA     `xml:"DATA,omitempty", json:"DATA,omitempty"`
 	REQUEST  REQUEST  `xml:"REQUEST,omitempty", json:"REQUEST,omitempty"`
 	RESPONSE RESPONSE `xml:"RESPONSE,omitempty", json:"RESPONSE,omitempty"`
 	FILTER   FILTER   `xml:"FILTER,omitempty", json:"FILTER,omitempty"`
-}
-
-type argError struct {
-	arg  string
-	prob string
-}
-
-func (e *argError) Error() string {
-	return ""
 }
 
 // emailadress; API-Key; false=plus | true=automatic; debugging=true|false; string xml|json
@@ -119,7 +113,7 @@ func (s *Initialization) FastbillRequest(xmlbody string) (*FBAPI, error) {
 	} else if s.Typ == "xml" {
 		req.Header.Set("Content-Type", "application/xml")
 	} else {
-		return nil, &argError{s.Typ, "can't work with it"}
+		return nil, errors.New(s.Typ + ": do you user JSON or XML")
 	}
 
 	resp, err := http.DefaultClient.Do(req)
@@ -139,7 +133,11 @@ func (s *Initialization) FastbillRequest(xmlbody string) (*FBAPI, error) {
 	}
 
 	if s.Typ == "json" {
-		json.Unmarshal(buf, &fbapi)
+		e := json.Unmarshal(buf, &fbapi)
+		if e == nil {
+			log.Println(e)
+		}
+
 	} else if s.Typ == "xml" {
 		xml.Unmarshal(buf, &fbapi)
 	}
@@ -155,10 +153,8 @@ func (s *Initialization) GenerateRequest(x FBAPI) (string, error) {
 		js, err := json.Marshal(x)
 		if err != nil {
 
-			return "", &argError{s.Typ, "can't work with it"}
+			return "", err
 		}
-
-		log.Println(string(js))
 
 		return string(js), nil
 
@@ -170,7 +166,7 @@ func (s *Initialization) GenerateRequest(x FBAPI) (string, error) {
 
 		return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + string(output), nil
 	} else {
-		return "", &argError{s.Typ, "can't work with it"}
+		return "", errors.New(s.Typ + ": do you user JSON or XML")
 	}
 
 }

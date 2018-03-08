@@ -1,11 +1,49 @@
 package gofastbill
 
-import (
-	"errors"
-	"log"
-)
+type CUSTOMER struct {
+	CUSTOMER_ID                    string `xml:"CUSTOMER_ID,omitempty", json:"CUSTOMER_ID,omitempty"`
+	CUSTOMER_NUMBER                string `xml:"CUSTOMER_NUMBER,omitempty", json:"CUSTOMER_NUMBER,omitempty"`
+	DAYS_FOR_PAYMENT               string `xml:"DAYS_FOR_PAYMENT,omitempty", json:"DAYS_FOR_PAYMENT,omitempty"`
+	CREATED                        string `xml:"CREATED,omitempty", json:"CREATED,omitempty"`
+	PAYMENT_TYPE                   string `xml:"PAYMENT_TYPE,omitempty", json:"PAYMENT_TYPE,omitempty"`
+	BANK_NAME                      string `xml:"BANK_NAME,omitempty", json:"BANK_NAME,omitempty"`
+	BANK_ACCOUNT_NUMBER            string `xml:"BANK_ACCOUNT_NUMBER,omitempty", json:"BANK_ACCOUNT_NUMBER,omitempty"`
+	BANK_CODE                      string `xml:"BANK_CODE,omitempty", json:"BANK_CODE,omitempty"`
+	BANK_ACCOUNT_OWNER             string `xml:"BANK_ACCOUNT_OWNER,omitempty", json:"BANK_ACCOUNT_OWNER,omitempty"`
+	BANK_IBAN                      string `xml:"BANK_IBAN,omitempty", json:"BANK_IBAN,omitempty"`
+	BANK_BIC                       string `xml:"BANK_BIC,omitempty", json:"BANK_BIC,omitempty"`
+	BANK_ACCOUNT_MANDATE_REFERENCE string `xml:"BANK_ACCOUNT_MANDATE_REFERENCE,omitempty", json:"BANK_ACCOUNT_MANDATE_REFERENCE,omitempty"`
+	SHOW_PAYMENT_NOTICE            string `xml:"SHOW_PAYMENT_NOTICE,omitempty", json:"SHOW_PAYMENT_NOTICE,omitempty"`
+	ACCOUNT_RECEIVABLE             string `xml:"ACCOUNT_RECEIVABLE,omitempty", json:"ACCOUNT_RECEIVABLE,omitempty"`
+	CUSTOMER_TYPE                  string `xml:"CUSTOMER_TYPE,omitempty", json:"CUSTOMER_TYPE,omitempty"`
+	TOP                            string `xml:"TOP,omitempty", json:"TOP,omitempty"`
+	NEWSLETTER_OPTIN               string `xml:"NEWSLETTER_OPTIN,omitempty", json:"NEWSLETTER_OPTIN,omitempty"`
+	ORGANIZATION                   string `xml:"ORGANIZATION,omitempty", json:"ORGANIZATION,omitempty"`
+	POSITION                       string `xml:"POSITION,omitempty", json:"POSITION,omitempty"`
+	ACADEMIC_DEGREE                string `xml:"ACADEMIC_DEGREE,omitempty", json:"ACADEMIC_DEGREE,omitempty"`
+	SALUTATION                     string `xml:"SALUTATION,omitempty", json:"SALUTATION,omitempty"`
+	FIRST_NAME                     string `xml:"FIRST_NAME,omitempty", json:"FIRST_NAME,omitempty"`
+	LAST_NAME                      string `xml:"LAST_NAME,omitempty", json:"LAST_NAME,omitempty"`
+	ADDRESS                        string `xml:"ADDRESS,omitempty", json:"ADDRESS,omitempty"`
+	ADDRESS_2                      string `xml:"ADDRESS_2,omitempty", json:"ADDRESS_2,omitempty"`
+	ZIPCODE                        string `xml:"ZIPCODE,omitempty", json:"ZIPCODE,omitempty"`
+	CITY                           string `xml:"CITY,omitempty", json:"CITY,omitempty"`
+	COUNTRY_CODE                   string `xml:"COUNTRY_CODE,omitempty", json:"COUNTRY_CODE,omitempty"`
+	SECONDARY_ADDRESS              string `xml:"SECONDARY_ADDRESS,omitempty", json:"SECONDARY_ADDRESS,omitempty"`
+	PHONE                          string `xml:"PHONE,omitempty", json:"PHONE,omitempty"`
+	PHONE_2                        string `xml:"PHONE_2,omitempty", json:"PHONE_2,omitempty"`
+	FAX                            string `xml:"FAX,omitempty", json:"FAX,omitempty"`
+	MOBILE                         string `xml:"MOBILE,omitempty", json:"MOBILE,omitempty"`
+	EMAIL                          string `xml:"EMAIL,omitempty", json:"EMAIL,omitempty"`
+	WEBSITE                        string `xml:"WEBSITE,omitempty", json:"WEBSITE,omitempty"`
+	VAT_ID                         string `xml:"VAT_ID,omitempty", json:"VAT_ID,omitempty"`
+	CURRENCY_CODE                  string `xml:"CURRENCY_CODE,omitempty", json:"CURRENCY_CODE,omitempty"`
+	LASTUPDATE                     string `xml:"LASTUPDATE,omitempty", json:"LASTUPDATE,omitempty"`
+	TAGS                           string `xml:"TAGS,omitempty", json:"TAGS,omitempty"`
+}
 
-type CustomerCreate_Request struct {
+type DATA struct {
+	CUSTOMER_ID                    string `xml:"CUSTOMER_ID,omitempty", json:"CUSTOMER_ID,omitempty"`
 	CUSTOMER_NUMBER                string `xml:"CUSTOMER_NUMBER,omitempty", json:"CUSTOMER_NUMBER,omitempty"`                               //	Eigene Kundennummer
 	CUSTOMER_TYPE                  string `xml:"CUSTOMER_TYPE,omitempty", json:"CUSTOMER_TYPE,omitempty"`                                   // 	Required	Kundentyp: business = Geschäftskunde | consumer = Privatperson
 	ORGANIZATION                   string `xml:"ORGANIZATION,omitempty", json:"ORGANIZATION,omitempty"`                                     // 	Required	Firmenname [REQUIRED] wenn CUSTOMER_TYPE = business
@@ -31,7 +69,7 @@ type CustomerCreate_Request struct {
 	CURRENCY_CODE                  string `xml:"CURRENCY_CODE,omitempty", json:"CURRENCY_CODE,omitempty"`                                   //	Standardwährung
 	VAT_ID                         string `xml:"VAT_ID,omitempty", json:"VAT_ID,omitempty"`                                                 //	USt-IdNr.
 	DAYS_FOR_PAYMENT               string `xml:"DAYS_FOR_PAYMENT,omitempty", json:"DAYS_FOR_PAYMENT,omitempty"`                             //	Tage bis zum Zahlungsziel
-	PAYMENT_TYPE                   string `xml:"PAYMENT_TYPE,omitempty", json:"PAYMENT_TYPE,omitempty"`                                     //	Zahlungsart: 1 = ueberweisung | 2 = lastschrift | 3 = bar | 4 = paypal | 5 = vorkasse | 6 = kreditkarte
+	PAYMENT_TYPE                   string `xml:"PAYMENT_TYPE,omitempty", json:"PAYMENT_TYPE,omitempty"`                                     //	1 = send | 2 = lastS | 3 = bar | 4 = paypal | 5 = vorK | 6 = kreditK
 	SHOW_PAYMENT_NOTICE            string `xml:"SHOW_PAYMENT_NOTICE,omitempty", json:"SHOW_PAYMENT_NOTICE,omitempty"`                       //	Zahlungshinweis anzeigen
 	BANK_NAME                      string `xml:"BANK_NAME,omitempty", json:"BANK_NAME,omitempty"`                                           //	Bankname
 	BANK_CODE                      string `xml:"BANK_CODE,omitempty", json:"BANK_CODE,omitempty"`                                           //	Bankleitzahl
@@ -39,78 +77,4 @@ type CustomerCreate_Request struct {
 	BANK_ACCOUNT_OWNER             string `xml:"BANK_ACCOUNT_OWNER,omitempty", json:"BANK_ACCOUNT_OWNER,omitempty"`                         //	Kontoinhaber
 	BANK_ACCOUNT_MANDATE_REFERENCE string `xml:"BANK_ACCOUNT_MANDATE_REFERENCE,omitempty", json:"BANK_ACCOUNT_MANDATE_REFERENCE,omitempty"` //	Mandatsrefernznummer
 	TAGS                           string `xml:"TAGS,omitempty", json:"TAGS,omitempty"`                                                     //	Tag halt
-}
-
-// Create customer; RETURN "STATUS, "CUSTOMER_ID"
-func (s *Initialization) Customer_Create(req CustomerCreate_Request) (*FBAPI, error) {
-
-	var fastbillbody string
-
-	var r FBAPI
-
-	r.SERVICE = "customer.create"
-
-	if req.CUSTOMER_TYPE == "business" || req.CUSTOMER_TYPE == "consumer" {
-
-		if req.CUSTOMER_TYPE == "business" {
-			if req.ORGANIZATION == "" {
-
-				return nil, errors.New(s.Typ + ": ORGANIZATION must not be empty if CUSTOMER_TYPE business")
-			}
-		} else if req.CUSTOMER_TYPE == "consumer" {
-			if req.LAST_NAME == "" {
-				return nil, errors.New(s.Typ + ": LAST_NAME must not be empty if COSTUMER_TYPE consumer")
-			}
-		}
-	} else {
-		return nil, errors.New(s.Typ + ": Wrong CUSTOMER_TYPE do you use business|consumer")
-	}
-
-	r.DATA.CUSTOMER_NUMBER = req.CUSTOMER_NUMBER
-	r.DATA.CUSTOMER_TYPE = req.CUSTOMER_TYPE
-	r.DATA.ORGANIZATION = req.ORGANIZATION
-	r.DATA.POSITION = req.POSITION
-	r.DATA.ACADEMIC_DEGREE = req.ACADEMIC_DEGREE
-	r.DATA.SALUTATION = req.SALUTATION
-	r.DATA.FIRST_NAME = req.FIRST_NAME
-	r.DATA.LAST_NAME = req.LAST_NAME
-	r.DATA.ADDRESS = req.ADDRESS
-	r.DATA.ADDRESS_2 = req.ADDRESS_2
-	r.DATA.SECONDARY_ADDRESS = req.SECONDARY_ADDRESS
-	r.DATA.ZIPCODE = req.ZIPCODE
-	r.DATA.CITY = req.CITY
-	r.DATA.STATE = req.STATE
-	r.DATA.COUNTRY_CODE = req.COUNTRY_CODE
-	r.DATA.PHONE = req.PHONE
-	r.DATA.PHONE_2 = req.PHONE_2
-	r.DATA.FAX = req.FAX
-	r.DATA.MOBILE = req.MOBILE
-	r.DATA.EMAIL = req.EMAIL
-	r.DATA.WEBSITE = req.WEBSITE
-	r.DATA.ACCOUNT_RECEIVABLE = req.ACCOUNT_RECEIVABLE
-	r.DATA.CURRENCY_CODE = req.CURRENCY_CODE
-	r.DATA.VAT_ID = req.VAT_ID
-	r.DATA.DAYS_FOR_PAYMENT = req.DAYS_FOR_PAYMENT
-	r.DATA.PAYMENT_TYPE = req.PAYMENT_TYPE
-	r.DATA.SHOW_PAYMENT_NOTICE = req.SHOW_PAYMENT_NOTICE
-	r.DATA.BANK_NAME = req.BANK_NAME
-	r.DATA.BANK_CODE = req.BANK_CODE
-	r.DATA.BANK_ACCOUNT_NUMBER = req.BANK_ACCOUNT_NUMBER
-	r.DATA.BANK_ACCOUNT_OWNER = req.BANK_ACCOUNT_OWNER
-	r.DATA.BANK_ACCOUNT_MANDATE_REFERENCE = req.BANK_ACCOUNT_MANDATE_REFERENCE
-	r.DATA.TAGS = req.TAGS
-
-	fastbillbody, err := s.GenerateRequest(r)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := s.FastbillRequest(fastbillbody)
-
-	if err != nil {
-		return nil, err
-	}
-
-	return resp, nil
-
 }

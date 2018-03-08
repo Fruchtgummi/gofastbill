@@ -64,3 +64,23 @@ Authentication and GET a Customer
 
 ~~~~
 
+Create a New Customer
+-----------------------------------
+~~~
+	
+    var x gofastbill.CustomerCreate_Request
+
+	x.CUSTOMER_TYPE = "consumer" // or business
+	x.LAST_NAME = "Mustermann" // Required by consumer
+	x.ORGANIZATION = "Mustermann GmbH" //Required by business
+
+	fbapi, err := fastbill.Customer_Create(x)
+
+	if err != nil {
+		log.Println(err)
+	}
+
+	log.Println(fbapi)
+
+
+~~~~
