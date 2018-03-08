@@ -8,6 +8,8 @@ gofastbill a API for Fastbill
 Here are the things you can do until now:
 
   * Authentication : Login => Email, API-Key | Login for Mobile and Add-Ons with => Email, Password | Type xml or json
+  * Customer : get, create, update, delete
+  * Contact : get, create, update, delete
   * Invoice : get, create, update, delete, complete, cancel, sign, sendbyemail, sendbypost, setpaid
   * Template : get
   * Webhooks : sendto

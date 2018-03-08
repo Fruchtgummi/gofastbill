@@ -1,11 +1,9 @@
 package gofastbill
 
 import (
-	"errors"
-	//	"bytes"
 	"encoding/json"
 	"encoding/xml"
-	//"fmt"
+	"errors"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -40,23 +38,25 @@ type Body struct {
 }
 
 type REQUEST struct {
-	SERVICE string `xml:"SERVICE,omitempty", json:"SERVICE,omitempty"`
-	FILTER  FILTER `xml:"FILTER,omitempty", json:"FILTER,omitempty"`
+	SERVICE string `xml:"SERVICE,omitempty" json:"SERVICE,omitempty"`
+	FILTER  FILTER `xml:"FILTER,omitempty" json:"FILTER,omitempty"`
 }
 
 type RESPONSE struct {
-	STATUS      string `xml:"STATUS,omitempty", json:"STATUS,omitempty"`
-	CUSTOMER_ID string `xml:"CUSTOMER_ID,omitempty", json:"CUSTOMER_ID,omitempty"`
+	STATUS      string `xml:"STATUS,omitempty" json:"STATUS,omitempty"`
+	CUSTOMER_ID string `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`
 
-	CUSTOMERS []CUSTOMER `xml:"CUSTOMERS,omitempty", json:"CUSTOMERS,omitempty"`
+	CUSTOMERS []CUSTOMER `xml:"CUSTOMERS,omitempty" json:"CUSTOMERS,omitempty"`
+	CONTACTS  []CONTACT  `xml:"CONTACTS,omitempty" json:"CONTACTS,omitempty"`
 }
 
 type FILTER struct {
-	CUSTOMER_ID     string `xml:"CUSTOMER_ID,omitempty", json:"CUSTOMER_ID,omitempty"`
-	CUSTOMER_NUMBER string `xml:"CUSTOMER_NUMBER,omitempty", json:"CUSTOMER_NUMBER,omitempty"`
-	COUNTRY_CODE    string `xml:"COUNTRY_CODE,omitempty", json:"CUSTOMER_CODE,omitempty"`
-	CITY            string `xml:"CITY,omitempty", json:"CITY,omitempty"`
-	TERM            string `xml:"TERM,omitempty", json:"TERM,omitempty"`
+	CUSTOMER_ID     string `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`
+	CUSTOMER_NUMBER string `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"`
+	COUNTRY_CODE    string `xml:"COUNTRY_CODE,omitempty" json:"CUSTOMER_CODE,omitempty"`
+	CITY            string `xml:"CITY,omitempty" json:"CITY,omitempty"`
+	TERM            string `xml:"TERM,omitempty" json:"TERM,omitempty"`
+	CONTACT_ID      string `xml:"CONTACT_ID,omitempty" json:"CONTACT_ID,omitempty"`
 }
 
 type ERRORS struct {
@@ -64,11 +64,11 @@ type ERRORS struct {
 }
 
 type FBAPI struct {
-	SERVICE  string   `xml:"SERVICE,omitempty", json:"SERVICE,omitempty"`
-	DATA     DATA     `xml:"DATA,omitempty", json:"DATA,omitempty"`
-	REQUEST  REQUEST  `xml:"REQUEST,omitempty", json:"REQUEST,omitempty"`
-	RESPONSE RESPONSE `xml:"RESPONSE,omitempty", json:"RESPONSE,omitempty"`
-	FILTER   FILTER   `xml:"FILTER,omitempty", json:"FILTER,omitempty"`
+	SERVICE  string   `xml:"SERVICE,omitempty" json:"SERVICE,omitempty"`
+	DATA     DATA     `xml:"DATA,omitempty" json:"DATA,omitempty"`
+	REQUEST  REQUEST  `xml:"REQUEST,omitempty" json:"REQUEST,omitempty"`
+	RESPONSE RESPONSE `xml:"RESPONSE,omitempty" json:"RESPONSE,omitempty"`
+	FILTER   FILTER   `xml:"FILTER,omitempty" json:"FILTER,omitempty"`
 }
 
 // emailadress; API-Key; false=plus | true=automatic; debugging=true|false; string xml|json
@@ -101,7 +101,7 @@ func (s *Initialization) FastbillRequest(xmlbody string) (*FBAPI, error) {
 	var fbapi *FBAPI
 
 	body := strings.NewReader(xmlbody)
-	req, err := http.NewRequest("POST", "https://my.fastbill.com/api/1.0/api.php", body)
+	req, err := http.NewRequest("POST", s.Serviceurl, body)
 	if err != nil {
 		return nil, err
 	}
@@ -113,7 +113,7 @@ func (s *Initialization) FastbillRequest(xmlbody string) (*FBAPI, error) {
 	} else if s.Typ == "xml" {
 		req.Header.Set("Content-Type", "application/xml")
 	} else {
-		return nil, errors.New(s.Typ + ": do you user JSON or XML")
+		return nil, errors.New(s.Typ + ": Do you use JSON or XML!")
 	}
 
 	resp, err := http.DefaultClient.Do(req)
@@ -166,7 +166,7 @@ func (s *Initialization) GenerateRequest(x FBAPI) (string, error) {
 
 		return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + string(output), nil
 	} else {
-		return "", errors.New(s.Typ + ": do you user JSON or XML")
+		return "", errors.New(s.Typ + ": Do you use JSON or XML!")
 	}
 
 }

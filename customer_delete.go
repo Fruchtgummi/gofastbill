@@ -5,10 +5,10 @@ import (
 )
 
 type CustomerDelete_Request struct {
-	CUSTOMER_ID string `xml:"CUSTOMER_ID,omitempty", json:"CUSTOMER_ID,omitempty"`
+	CUSTOMER_ID string `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`
 }
 
-//Delete Customer; RETURN "STATUS"
+//Delete Customer; RESPONSE: "STATUS"
 func (s *Initialization) Customer_delete(req CustomerDelete_Request) (*FBAPI, error) {
 
 	var fastbillbody string
