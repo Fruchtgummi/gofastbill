@@ -31,7 +31,7 @@ type CustomerCreate_Request struct {
 	CURRENCY_CODE                  string `xml:"CURRENCY_CODE,omitempty" json:"CURRENCY_CODE,omitempty"`                                   //	Standardwährung
 	VAT_ID                         string `xml:"VAT_ID,omitempty" json:"VAT_ID,omitempty"`                                                 //	USt-IdNr.
 	DAYS_FOR_PAYMENT               string `xml:"DAYS_FOR_PAYMENT,omitempty" json:"DAYS_FOR_PAYMENT,omitempty"`                             //	Tage bis zum Zahlungsziel
-	PAYMENT_TYPE                   string `xml:"PAYMENT_TYPE,omitempty" json:"PAYMENT_TYPE,omitempty"`                                     //	Zahlungsart: 1 = ueberweisung | 2 = lastschrift | 3 = bar | 4 = paypal | 5 = vorkasse | 6 = kreditkarte
+	PAYMENT_TYPE                   string `xml:"PAYMENT_TYPE,omitempty" json:"PAYMENT_TYPE,omitempty"`                                     //	1 = ueberW | 2 = lastS | 3 = bar | 4 = paypal | 5 = vorK | 6 = kreditK
 	SHOW_PAYMENT_NOTICE            string `xml:"SHOW_PAYMENT_NOTICE,omitempty" json:"SHOW_PAYMENT_NOTICE,omitempty"`                       //	Zahlungshinweis anzeigen
 	BANK_NAME                      string `xml:"BANK_NAME,omitempty" json:"BANK_NAME,omitempty"`                                           //	Bankname
 	BANK_CODE                      string `xml:"BANK_CODE,omitempty" json:"BANK_CODE,omitempty"`                                           //	Bankleitzahl

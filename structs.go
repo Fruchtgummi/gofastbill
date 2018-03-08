@@ -70,6 +70,7 @@ type CONTACT struct {
 
 type DATA struct {
 	CUSTOMER_ID                    string `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`
+	CONTACT_ID                     string `xml:"CONTACT_ID,omitempty" json:"CONTACT_ID,omitempty"`
 	CUSTOMER_NUMBER                string `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"`                               //	Eigene Kundennummer
 	CUSTOMER_TYPE                  string `xml:"CUSTOMER_TYPE,omitempty" json:"CUSTOMER_TYPE,omitempty"`                                   // 	Required	Kundentyp: business = Geschäftskunde | consumer = Privatperson
 	ORGANIZATION                   string `xml:"ORGANIZATION,omitempty" json:"ORGANIZATION,omitempty"`                                     // 	Required	Firmenname [REQUIRED] wenn CUSTOMER_TYPE = business
@@ -102,5 +103,6 @@ type DATA struct {
 	BANK_ACCOUNT_NUMBER            string `xml:"BANK_ACCOUNT_NUMBER,omitempty" json:"BANK_ACCOUNT_NUMBER,omitempty"`                       //	Kontonummer
 	BANK_ACCOUNT_OWNER             string `xml:"BANK_ACCOUNT_OWNER,omitempty" json:"BANK_ACCOUNT_OWNER,omitempty"`                         //	Kontoinhaber
 	BANK_ACCOUNT_MANDATE_REFERENCE string `xml:"BANK_ACCOUNT_MANDATE_REFERENCE,omitempty" json:"BANK_ACCOUNT_MANDATE_REFERENCE,omitempty"` //	Mandatsrefernznummer
-	TAGS                           string `xml:"TAGS,omitempty" json:"TAGS,omitempty"`                                                     //	Tag halt
+	CREATED                        string `xml:"CREATED,omitempty" json:"CREATED,omitempty"`
+	TAGS                           string `xml:"TAGS,omitempty" json:"TAGS,omitempty"` //	Tag halt
 }

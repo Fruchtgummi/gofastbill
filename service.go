@@ -25,18 +25,6 @@ type Initialization struct {
 	Typ        string
 }
 
-type Body struct {
-	FBAPI    string
-	SERVICE  string
-	LIMIT    string
-	OFFSET   string
-	FILTER   string
-	DATA     string
-	REQUEST  string
-	RESPONSE string
-	ERRORS   string
-}
-
 type REQUEST struct {
 	SERVICE string `xml:"SERVICE,omitempty" json:"SERVICE,omitempty"`
 	FILTER  FILTER `xml:"FILTER,omitempty" json:"FILTER,omitempty"`
@@ -64,7 +52,10 @@ type ERRORS struct {
 }
 
 type FBAPI struct {
+	LIMIT    string   `xml:"LIMIT,omitempty" json:"LIMIT,omitempty"`
+	OFFSET   string   `xml:"OFFSET,omitempty" json:"OFFSET,omitempty"`
 	SERVICE  string   `xml:"SERVICE,omitempty" json:"SERVICE,omitempty"`
+	ERRORS   ERRORS   `xml:"ERRORS,omitempty" json:"ERRORS,omitempty"`
 	DATA     DATA     `xml:"DATA,omitempty" json:"DATA,omitempty"`
 	REQUEST  REQUEST  `xml:"REQUEST,omitempty" json:"REQUEST,omitempty"`
 	RESPONSE RESPONSE `xml:"RESPONSE,omitempty" json:"RESPONSE,omitempty"`
