@@ -26,8 +26,10 @@ type Initialization struct {
 }
 
 type REQUEST struct {
-	SERVICE string `xml:"SERVICE,omitempty" json:"SERVICE,omitempty"`
-	FILTER  FILTER `xml:"FILTER,omitempty" json:"FILTER,omitempty"`
+	SERVICE string   `xml:"SERVICE,omitempty" json:"SERVICE,omitempty"`
+	FILTER  FILTER   `xml:"FILTER,omitempty" json:"FILTER,omitempty"`
+	ERRORS  []ERRORS `xml:"ERRORS,omitempty" json:"ERRORS,omitempty"`
+	DATA    []DATA   `xml:"DATA,omitempty" json:"DATA,omitempty"`
 }
 
 type RESPONSE struct {
@@ -37,6 +39,7 @@ type RESPONSE struct {
 	CONTACTS    []CONTACT  `xml:"CONTACTS,omitempty" json:"CONTACTS,omitempty"`
 	INVOICES    []INVOICE  `xml:"INVOICES,omitempty" json:"INVOICES,omitempty"`
 	WEBHOOKS    []WEBHOOK  `xml:"WEBHOOKS,omitempty" json:"WEBHOOKS,omitempty"`
+	TEMPLATES   []TEMPLATE `xml:"TEMPLATES,omitempty" json:"TEMPLATES,omitempty"`
 }
 
 type FILTER struct {
@@ -57,7 +60,7 @@ type FILTER struct {
 }
 
 type ERRORS struct {
-	ERROR string
+	ERROR string `xml:"ERROR,omitempty" json:"ERROR,omitempty"`
 }
 
 type FBAPI struct {
@@ -109,12 +112,15 @@ func (s *Initialization) FastbillRequest(xmlbody string) (*FBAPI, error) {
 	req.Header.Set("Content-Type", "application/json")
 
 	if s.Typ == "json" {
+
 		req.Header.Set("Content-Type", "application/json")
 	} else if s.Typ == "xml" {
 		req.Header.Set("Content-Type", "application/xml")
 	} else {
 		return nil, errors.New(s.Typ + ": Do you use JSON or XML!")
 	}
+
+	log.Println(body)
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {

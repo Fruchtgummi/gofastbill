@@ -40,6 +40,7 @@ type CUSTOMER struct {
 	CURRENCY_CODE                  string `xml:"CURRENCY_CODE,omitempty" json:"CURRENCY_CODE,omitempty"`
 	LASTUPDATE                     string `xml:"LASTUPDATE,omitempty" json:"LASTUPDATE,omitempty"`
 	TAGS                           string `xml:"TAGS,omitempty" json:"TAGS,omitempty"`
+	STATUS                         string `xml:"STATUS,omitempty" json:"STATUS,omitempty"` //Status
 }
 
 type CONTACT struct {
@@ -66,6 +67,7 @@ type CONTACT struct {
 	CURRENCY_CODE     string `xml:"CURRENCY_CODE,omitempty" json:"CURRENCY_CODE,omitempty"`
 	CREATED           string `xml:"CREATED,omitempty" json:"CREATED,omitempty"`
 	TAGS              string `xml:"TAGS,omitempty" json:"TAGS,omitempty"`
+	STATUS            string `xml:"STATUS,omitempty" json:"STATUS,omitempty"` //Status
 }
 
 type INVOICE struct {
@@ -116,7 +118,7 @@ type INVOICE struct {
 	PAYMENTS               PAYMENTS  `xml:"PAYMENTS,omitempty" json:"PAYMENTS,omitempty"`                             //Liste aller Zahlungen zu einem Datensatz
 	PAYMENT_INFO           string    `xml:"PAYMENT_INFO,omitempty" json:"PAYMENT_INFO,omitempty"`                     //Informationen zu Zahlung
 	DOCUMENT_URL           string    `xml:"DOCUMENT_URL,omitempty" json:"DOCUMENT_URL,omitempty"`                     //URL eines Dokuments
-
+	STATUS                 string    `xml:"STATUS,omitempty" json:"STATUS,omitempty"`                                 //Status
 }
 
 type VAT_ITEMS struct {
@@ -165,6 +167,12 @@ type WEBHOOK struct {
 //contact.created
 //contact.updated
 //contact.deleted
+
+type TEMPLATE struct {
+	TEMPLATE_ID   string `xml:"TEMPLATE_ID,omitempty" json:"TEMPLATE_ID,omitempty"`     //Tempalte ID
+	TEMPLATE_NAME string `xml:"TEMPLATE_NAME,omitempty" json:"TEMPLATE_NAME,omitempty"` //Vorlagenname
+	TEMPLATE_HASH string `xml:"TEMPLATE_HASH,omitempty" json:"TEMPLATE_HASH,omitempty"` //Eindeutige ID des Templates
+}
 
 //Datastruct include all tags
 type DATA struct {

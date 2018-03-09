@@ -20,7 +20,6 @@ Here are the things you can do until now:
   * Contact : get, create, update, delete
   * Invoice : get, create, update, delete, complete, cancel, sign, sendbyemail, sendbypost, setpaid
   * Template : get
-  * Webhooks : get, create, delete
 
 
 cooming soon:
@@ -34,6 +33,8 @@ cooming soon:
   * Project : get, create, update, delete
   * Time : get, create, update, delete
   * Document : get, create 
+  * Webhooks : get, create, delete (BETA)
+
 
 Additional Features
 -------------------
@@ -73,7 +74,7 @@ Authentication and GET a Customer
 	
 	x.CUSTOMER_ID = "123456" //is CUSTOMER_ID empty you get all customers
 	
-	fbapi, err := fastbill.Customer_Get(x)
+	fbapi, err := fastbill.Customer_get(x)
 
 	if err != nil {
 		log.Println(err)
@@ -95,7 +96,7 @@ Create a NEW Customer
 	x.LAST_NAME = "Mustermann" 								// Required by consumer
 	x.ORGANIZATION = "Mustermann GmbH" 						//Required by business
 
-	fbapi, err := fastbill.Customer_Create(x)
+	fbapi, err := fastbill.Customer_create(x)
 
 	if err != nil {
 		log.Println(err)
@@ -128,7 +129,7 @@ Create a Invoice
 
 	x.ITEMS = append(x.ITEMS, y)
 
-	fbapi, err := fastbill.Invoice_Create(x)
+	fbapi, err := fastbill.Invoice_create(x)
 
 	if err != nil {
 		log.Println(err)
