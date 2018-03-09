@@ -31,11 +31,11 @@ type REQUEST struct {
 }
 
 type RESPONSE struct {
-	STATUS      string `xml:"STATUS,omitempty" json:"STATUS,omitempty"`
-	CUSTOMER_ID string `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`
-
-	CUSTOMERS []CUSTOMER `xml:"CUSTOMERS,omitempty" json:"CUSTOMERS,omitempty"`
-	CONTACTS  []CONTACT  `xml:"CONTACTS,omitempty" json:"CONTACTS,omitempty"`
+	STATUS      string     `xml:"STATUS,omitempty" json:"STATUS,omitempty"`
+	CUSTOMER_ID string     `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`
+	CUSTOMERS   []CUSTOMER `xml:"CUSTOMERS,omitempty" json:"CUSTOMERS,omitempty"`
+	CONTACTS    []CONTACT  `xml:"CONTACTS,omitempty" json:"CONTACTS,omitempty"`
+	INVOICES    []INVOICE  `xml:"INVOICES,omitempty" json:"INVOICES,omitempty"`
 }
 
 type FILTER struct {

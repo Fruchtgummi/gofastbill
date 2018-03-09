@@ -6,20 +6,20 @@ import (
 )
 
 type InvoiceCreate_Request struct {
-	CUSTOMER_ID            string `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Required	Eine bestimmte Kundennummer
-	CUSTOMER_COSTCENTER_ID string `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //ID der Kostenstelle
-	CURRENCY_CODE          string `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Standardwährung
-	TEMPLATE_ID            string `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Entwurfsnummer
-	INTROTEXT              string `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Einleitungstext
-	INVOICE_TITLE          string `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Rechnungstitel
-	INVOICE_DATE           string `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Rechnungsdatum
-	DELIVERY_DATE          string `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Lieferdatum
-	CASH_DISCOUNT_PERCENT  string `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Skonto in Prozent
-	CASH_DISCOUNT_DAYS     string `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Skonto-Zeitraum in Tagen
-	EU_DELIVERY            string `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Flag für Anzeige einer Innergemeinschaftliche Lieferung: 0 = nein | 1 = ja
-	IS_GROSS               string `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Flag ob auf Brutto umgestellt werden soll: 0 = no | 1 = yes
-	TEMPLATE_HASH          string `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Eindeutige ID des Templates
-	ITEMS                  string `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Required	Liste der Artikel
+	CUSTOMER_ID            string  `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Required	Eine bestimmte Kundennummer
+	CUSTOMER_COSTCENTER_ID string  `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //ID der Kostenstelle
+	CURRENCY_CODE          string  `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Standardwährung
+	TEMPLATE_ID            string  `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Entwurfsnummer
+	INTROTEXT              string  `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Einleitungstext
+	INVOICE_TITLE          string  `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Rechnungstitel
+	INVOICE_DATE           string  `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Rechnungsdatum
+	DELIVERY_DATE          string  `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Lieferdatum
+	CASH_DISCOUNT_PERCENT  string  `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Skonto in Prozent
+	CASH_DISCOUNT_DAYS     string  `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Skonto-Zeitraum in Tagen
+	EU_DELIVERY            string  `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Flag für Anzeige einer Innergemeinschaftliche Lieferung: 0 = nein | 1 = ja
+	IS_GROSS               string  `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Flag ob auf Brutto umgestellt werden soll: 0 = no | 1 = yes
+	TEMPLATE_HASH          string  `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Eindeutige ID des Templates
+	ITEMS                  []ITEMS `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"` //Required	Liste der Artikel
 
 }
 
