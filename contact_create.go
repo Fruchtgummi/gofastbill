@@ -29,7 +29,10 @@ type ContactCreate_Request struct {
 	TAGS              string `xml:"TAGS,omitempty" json:"TAGS,omitempty"`       //	Tag halt
 }
 
-// Create customer; RETURN "STATUS, "CONTACT_ID"
+//Create a new contact.
+//FILTER => All fields from Struct: gofastbill.ContactCreate_Request
+//Required: CUSTOME_ID
+//Response: STATUS, CONTACT_ID
 func (s *Initialization) Contact_Create(req ContactCreate_Request) (*FBAPI, error) {
 
 	var fastbillbody string

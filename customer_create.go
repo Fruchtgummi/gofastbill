@@ -41,7 +41,11 @@ type CustomerCreate_Request struct {
 	TAGS                           string `xml:"TAGS,omitempty" json:"TAGS,omitempty"`                                                     //	Tag halt
 }
 
-// Create customer; RETURN "STATUS, "CUSTOMER_ID"
+//Create a new customer.
+//FILTER => All fields from Struct: gofastbill.ContactGet_Request
+//Required:
+//CUSTOMER_TYPE (Customer type: business | consumer), ORGANIZATION (Company name [REQUIRED] if CUSTOMER_TYPE = business), LAST_NAME (Last name [REQUIRED] if CUSTOMER_TYPE = consumer)
+//Querying the details of one or more customers. If no filter is set, 10 customers will be returned. When LIMIT is set, up to 100 customers are possible.
 func (s *Initialization) Customer_Create(req CustomerCreate_Request) (*FBAPI, error) {
 
 	var fastbillbody string

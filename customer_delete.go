@@ -8,7 +8,10 @@ type CustomerDelete_Request struct {
 	CUSTOMER_ID string `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`
 }
 
-//Delete Customer; NEED: CUSTOMER_ID; RESPONSE: "STATUS"
+//Delete a custome
+//FILTER => All fields from Struct: gofastbillCustomerDelete_Request
+//Required: CUSTOMER_ID
+//Response: STATUS
 func (s *Initialization) Customer_delete(req CustomerDelete_Request) (*FBAPI, error) {
 
 	var fastbillbody string

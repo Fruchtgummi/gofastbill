@@ -8,7 +8,9 @@ type CustomerGet_Request struct {
 	TERM            string `xml:"TERM,omitempty" json:"TERM,omitempty"`
 }
 
-//GET Customer;
+//GET Customer
+//FILTER => CITY, COUNTRY_CODE, CUSTOMER_ID, CUSTOMER_NUMBER and TERM as atributte
+//Querying the details of one or more customers. If no filter is set, 10 customers will be returned. When LIMIT is set, up to 100 customers are possible.
 func (s *Initialization) Customer_Get(req CustomerGet_Request) (*FBAPI, error) {
 
 	var fastbillbody string
