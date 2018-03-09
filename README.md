@@ -14,6 +14,18 @@ Here are the things you can do until now:
   * Template : get
   * Webhooks : sendto
 
+cooming soon
+
+  * Estimate : get, create, sendbyemail, creatinvoice, delete
+  * Item : get, delete
+  * Recurring : get, create, update, delete
+  * Revenue : get, create, setpaid, delete
+  * Expense : get, create
+  * Article : get, create, update, delete
+  * Project : get, create, update, delete
+  * Time : get, create, update, delete
+  * Document : get, create 
+
 Additional Features
 -------------------
   * Minimal Models with hooks
