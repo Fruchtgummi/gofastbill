@@ -130,7 +130,8 @@ type ITEMS struct {
 	DESCRIPTION    string `xml:"DESCRIPTION,omitempty" json:"DESCRIPTION,omitempty"`       //Beschreibung
 	QUANTITY       string `xml:"QUANTITY,omitempty" json:"QUANTITY,omitempty"`             //Anzahl
 	UNIT           string `xml:"UNIT,omitempty" json:"UNIT,omitempty"`                     //Produkt Einheitstype
-	VET_PERCENT    string `xml:"VET_PERCENT,omitempty" json:"VET_PERCENT,omitempty"`       //MwSt in Prozent
+	UNIT_PRICE     string `xml:"UNIT_PRICE,omitempty" json:"UNIT_PRICE,omitempty"`         //Einzelpreis
+	VAT_PERCENT    string `xml:"VAT_PERCENT,omitempty" json:"VAT_PERCENT,omitempty"`       //MwSt in Prozent
 	IS_GROSS       string `xml:"IS_GROSS,omitempty" json:"IS_GROSS,omitempty"`             //Flag ob auf Brutto umgestellt werden soll: 0 = no | 1= yes
 	SORT_ORDER     string `xml:"SORT_ORDER,omitempty" json:"SORT_ORDER,omitempty"`         //Sortierungschlüssel der Rechnungsposition
 }

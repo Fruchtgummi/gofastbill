@@ -45,6 +45,14 @@ type FILTER struct {
 	CITY            string `xml:"CITY,omitempty" json:"CITY,omitempty"`
 	TERM            string `xml:"TERM,omitempty" json:"TERM,omitempty"`
 	CONTACT_ID      string `xml:"CONTACT_ID,omitempty" json:"CONTACT_ID,omitempty"`
+	INVOICE_ID      string `xml:"INVOICE_ID,omitempty" json:"INVOICE_ID,omitempty"`         //Rechnungs-ID
+	INVOICE_NUMBER  string `xml:"INVOICE_NUMBER,omitempty" json:"INVOICE_NUMBER,omitempty"` //Rechnungsnummer
+	INVOICE_TITLE   string `xml:"INVOICE_TITLE,omitempty" json:"INVOICE_TITLE,omitempty"`   //Rechnungstitel
+	MONTH           string `xml:"MONTH,omitempty" json:"MONTH,omitempty"`                   //Monat
+	YEAR            string `xml:"YEAR,omitempty" json:"YEAR,omitempty"`                     //Jahr
+	START_DUE_DATE  string `xml:"START_DUE_DATE,omitempty" json:"START_DUE_DATE,omitempty"` //Rechnungen die nach einem bestimmten Datum fällig werden
+	END_DUE_DATE    string `xml:"END_DUE_DATE,omitempty" json:"END_DUE_DATE,omitempty"`     //Rechnungen die vor einem bestimmten Datum fällig werden
+	TYPE            string `xml:"TYPE,omitempty" json:"TYPE,omitempty"`                     //Zahlungsart
 }
 
 type ERRORS struct {
