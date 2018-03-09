@@ -26,7 +26,7 @@ type InvoiceCreate_Request struct {
 //Create a new Invoice.
 //FILTER => All fields from Struct: gofastbill.InvoiceCreate_Request
 //Required: CUSTOMER_ID, []ITEMS
-func (s *Initialization) Invoice_Create(req InvoiceCreate_Request) (*FBAPI, error) {
+func (s *Initialization) Invoice_create(req InvoiceCreate_Request) (*FBAPI, error) {
 
 	var fastbillbody string
 

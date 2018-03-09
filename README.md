@@ -11,7 +11,7 @@ https://www.fastbill.com/en/
 ~~~
 go get github.com/Fruchtgummi/gofastbill
 ~~~
-gofastbill a API for Fastbill
+
 
 Here are the things you can do until now:
 
@@ -20,7 +20,7 @@ Here are the things you can do until now:
   * Contact : get, create, update, delete
   * Invoice : get, create, update, delete, complete, cancel, sign, sendbyemail, sendbypost, setpaid
   * Template : get
-  * Webhooks : sendto
+  * Webhooks : get, create, delete
 
 
 cooming soon:
@@ -114,7 +114,7 @@ Create a Invoice
 	x.CUSTOMER_ID = "123456"
 	x.TEMPLATE_ID = "123456"
 	x.INTROTEXT = "I'm a example"
-	x.INVOICE_TITLE = "Title of Invoce"
+	x.INVOICE_TITLE = "Title of Invoice"
 
 	var y gofastbill.ITEMS
 	

@@ -146,10 +146,31 @@ type PAYMENTS struct {
 
 }
 
+type WEBHOOK struct {
+	WEBHOOK_ID string `xml:"WEBHOOK_ID,omitempty" json:"WEBHOOK_ID,omitempty"` //Webhook ID
+	ENDPOINT   string `xml:"ENDPOINT,omitempty" json:"ENDPOINT,omitempty"`     //Endpoint
+	TYPE       string `xml:"TYPE,omitempty" json:"TYPE,omitempty"`             //Typ des Endpoints: "url" | "email". (Derzeit ist nur "url" verfügbar)
+	EVENTS     string `xml:"EVENTS,omitempty" json:"EVENTS,omitempty"`         //Events: bei welchen Ereignissen wir er aktiviert. ("customer.created,customer.updated")
+}
+
+//Daten (Comma-separated values) der Events die dem Endpoint zugeordnet werden können:
+//customer.created
+//customer.updated
+//customer.deleted
+//invoice.created
+//invoice.completed
+//invoice.canceled
+//estimate.created
+//estimate.updated
+//contact.created
+//contact.updated
+//contact.deleted
+
 //Datastruct include all tags
 type DATA struct {
 	CUSTOMER_ID                    string  `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`
 	CONTACT_ID                     string  `xml:"CONTACT_ID,omitempty" json:"CONTACT_ID,omitempty"`
+	WEBHOOK_ID                     string  `xml:"WEBHOOK_ID,omitempty" json:"WEBHOOK_ID,omitempty"`
 	CUSTOMER_NUMBER                string  `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"`                               //	Eigene Kundennummer
 	CUSTOMER_TYPE                  string  `xml:"CUSTOMER_TYPE,omitempty" json:"CUSTOMER_TYPE,omitempty"`                                   // 	Required	Kundentyp: business = Geschäftskunde | consumer = Privatperson
 	ORGANIZATION                   string  `xml:"ORGANIZATION,omitempty" json:"ORGANIZATION,omitempty"`                                     // 	Required	Firmenname [REQUIRED] wenn CUSTOMER_TYPE = business
@@ -182,19 +203,23 @@ type DATA struct {
 	BANK_ACCOUNT_NUMBER            string  `xml:"BANK_ACCOUNT_NUMBER,omitempty" json:"BANK_ACCOUNT_NUMBER,omitempty"`                       //	Kontonummer
 	BANK_ACCOUNT_OWNER             string  `xml:"BANK_ACCOUNT_OWNER,omitempty" json:"BANK_ACCOUNT_OWNER,omitempty"`                         //	Kontoinhaber
 	BANK_ACCOUNT_MANDATE_REFERENCE string  `xml:"BANK_ACCOUNT_MANDATE_REFERENCE,omitempty" json:"BANK_ACCOUNT_MANDATE_REFERENCE,omitempty"` //	Mandatsrefernznummer
-	CREATED                        string  `xml:"CREATED,omitempty" json:"CREATED,omitempty"`
-	TAGS                           string  `xml:"TAGS,omitempty" json:"TAGS,omitempty"`                                     //	Tag halt
-	CUSTOMER_COSTCENTER_ID         string  `xml:"CUSTOMER_COSTCENTER_ID,omitempty" json:"CUSTOMER_COSTCENTER_ID,omitempty"` //
-	TEMPLATE_ID                    string  `xml:"TEMPLATE_ID,omitempty" json:"TEMPLATE_ID,omitempty"`                       //
-	INTROTEXT                      string  `xml:"INTROTEXT,omitempty" json:"INTROTEXT,omitempty"`                           //
-	INVOICE_TITLE                  string  `xml:"INVOICE_TITLE,omitempty" json:"INVOICE_TITLE,omitempty"`                   //
-	INVOICE_DATE                   string  `xml:"INVOICE_DATE,omitempty" json:"INVOICE_DATE,omitempty"`                     //
-	DELIVERY_DATE                  string  `xml:"DELIVERY_DATE,omitempty" json:"DELIVERY_DATE,omitempty"`                   //
-	CASH_DISCOUNT_PERCENT          string  `xml:"CASH_DISCOUNT_PERCENT,omitempty" json:"CASH_DISCOUNT_PERCENT,omitempty"`   //
-	CASH_DISCOUNT_DAYS             string  `xml:"CASH_DISCOUNT_DAYS,omitempty" json:"CASH_DISCOUNT_DAYS,omitempty"`         //
-	EU_DELIVERY                    string  `xml:"EU_DELIVERY,omitempty" json:"EU_DELIVERY,omitempty"`                       //
-	IS_GROSS                       string  `xml:"IS_GROSS,omitempty" json:"IS_GROSS,omitempty"`                             //
-	TEMPLATE_HASH                  string  `xml:"TEMPLATE_HASH,omitempty" json:"TEMPLATE_HASH,omitempty"`                   //
-	ITEMS                          []ITEMS `xml:"ITEMS,omitempty" json:"ITEMS,omitempty"`                                   //
-
+	CREATED                        string  `xml:"CREATED,omitempty" json:"CREATED,omitempty"`                                               //
+	TAGS                           string  `xml:"TAGS,omitempty" json:"TAGS,omitempty"`                                                     //	Tag halt
+	CUSTOMER_COSTCENTER_ID         string  `xml:"CUSTOMER_COSTCENTER_ID,omitempty" json:"CUSTOMER_COSTCENTER_ID,omitempty"`                 //
+	TEMPLATE_ID                    string  `xml:"TEMPLATE_ID,omitempty" json:"TEMPLATE_ID,omitempty"`                                       //
+	INTROTEXT                      string  `xml:"INTROTEXT,omitempty" json:"INTROTEXT,omitempty"`                                           //
+	INVOICE_TITLE                  string  `xml:"INVOICE_TITLE,omitempty" json:"INVOICE_TITLE,omitempty"`                                   //
+	INVOICE_DATE                   string  `xml:"INVOICE_DATE,omitempty" json:"INVOICE_DATE,omitempty"`                                     //
+	DELIVERY_DATE                  string  `xml:"DELIVERY_DATE,omitempty" json:"DELIVERY_DATE,omitempty"`                                   //
+	CASH_DISCOUNT_PERCENT          string  `xml:"CASH_DISCOUNT_PERCENT,omitempty" json:"CASH_DISCOUNT_PERCENT,omitempty"`                   //
+	CASH_DISCOUNT_DAYS             string  `xml:"CASH_DISCOUNT_DAYS,omitempty" json:"CASH_DISCOUNT_DAYS,omitempty"`                         //
+	EU_DELIVERY                    string  `xml:"EU_DELIVERY,omitempty" json:"EU_DELIVERY,omitempty"`                                       //
+	IS_GROSS                       string  `xml:"IS_GROSS,omitempty" json:"IS_GROSS,omitempty"`                                             //
+	TEMPLATE_HASH                  string  `xml:"TEMPLATE_HASH,omitempty" json:"TEMPLATE_HASH,omitempty"`                                   //
+	ITEMS                          []ITEMS `xml:"ITEMS,omitempty" json:"ITEMS,omitempty"`                                                   //
+	TYPE                           string  `xml:"TYPE,omitempty" json:"TYPE,omitempty"`                                                     //
+	ENDPOINT                       string  `xml:"ENDPOINT,omitempty" json:"ENDPOINT,omitempty"`                                             //
+	EVENTS                         string  `xml:"EVENTS,omitempty" json:"EVENTS,omitempty"`                                                 //
+	INVOICE_ID                     string  `xml:"INVOICE_ID,omitempty" json:"INVOICE_ID,omitempty"`                                         //Required	Rechnungs-ID
+	DELETE_EXISTING_ITEMS          string  `xml:"DELETE_EXISTING_ITEMS,omitempty" json:"DELETE_EXISTING_ITEMS,omitempty"`                   //Flag zur Löschung aller bestehenden Rechnungsposten: 0 = nein | 1 = ja
 }

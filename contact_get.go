@@ -8,7 +8,7 @@ type ContactGet_Request struct {
 }
 
 //GET Customer;
-func (s *Initialization) Contact_Get(req ContactGet_Request) (*FBAPI, error) {
+func (s *Initialization) Contact_get(req ContactGet_Request) (*FBAPI, error) {
 
 	var fastbillbody string
 

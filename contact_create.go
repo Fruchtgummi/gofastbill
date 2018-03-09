@@ -33,7 +33,7 @@ type ContactCreate_Request struct {
 //FILTER => All fields from Struct: gofastbill.ContactCreate_Request
 //Required: CUSTOME_ID
 //Response: STATUS, CONTACT_ID
-func (s *Initialization) Contact_Create(req ContactCreate_Request) (*FBAPI, error) {
+func (s *Initialization) Contact_create(req ContactCreate_Request) (*FBAPI, error) {
 
 	var fastbillbody string
 

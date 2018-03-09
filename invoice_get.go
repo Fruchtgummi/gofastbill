@@ -16,7 +16,7 @@ type InvoiceGet_Request struct {
 //GET Invoice
 //FILTER => All fields from Struct: gofastbill.InvoiceGet_Request
 //Querying the details of one or more invoices. If no filter is set, 10 invoices will be returned. When LIMIT is set, up to 100 invoices are possible
-func (s *Initialization) Invoice_Get(req InvoiceGet_Request) (*FBAPI, error) {
+func (s *Initialization) Invoice_get(req InvoiceGet_Request) (*FBAPI, error) {
 
 	var fastbillbody string
 

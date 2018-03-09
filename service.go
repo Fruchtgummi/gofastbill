@@ -36,6 +36,7 @@ type RESPONSE struct {
 	CUSTOMERS   []CUSTOMER `xml:"CUSTOMERS,omitempty" json:"CUSTOMERS,omitempty"`
 	CONTACTS    []CONTACT  `xml:"CONTACTS,omitempty" json:"CONTACTS,omitempty"`
 	INVOICES    []INVOICE  `xml:"INVOICES,omitempty" json:"INVOICES,omitempty"`
+	WEBHOOKS    []WEBHOOK  `xml:"WEBHOOKS,omitempty" json:"WEBHOOKS,omitempty"`
 }
 
 type FILTER struct {
