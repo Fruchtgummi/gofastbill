@@ -33,13 +33,14 @@ type REQUEST struct {
 }
 
 type RESPONSE struct {
-	STATUS      string     `xml:"STATUS,omitempty" json:"STATUS,omitempty"`
-	CUSTOMER_ID string     `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`
-	CUSTOMERS   []CUSTOMER `xml:"CUSTOMERS,omitempty" json:"CUSTOMERS,omitempty"`
-	CONTACTS    []CONTACT  `xml:"CONTACTS,omitempty" json:"CONTACTS,omitempty"`
-	INVOICES    []INVOICE  `xml:"INVOICES,omitempty" json:"INVOICES,omitempty"`
-	WEBHOOKS    []WEBHOOK  `xml:"WEBHOOKS,omitempty" json:"WEBHOOKS,omitempty"`
-	TEMPLATES   []TEMPLATE `xml:"TEMPLATES,omitempty" json:"TEMPLATES,omitempty"`
+	STATUS            string     `xml:"STATUS,omitempty" json:"STATUS,omitempty"`
+	CUSTOMER_ID       string     `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`
+	REMAINING_CREDITS string     `xml:"REMAINING_CREDITS,omitempty" json:"REMAINING_CREDITS,omitempty"`
+	CUSTOMERS         []CUSTOMER `xml:"CUSTOMERS,omitempty" json:"CUSTOMERS,omitempty"`
+	CONTACTS          []CONTACT  `xml:"CONTACTS,omitempty" json:"CONTACTS,omitempty"`
+	INVOICES          []INVOICE  `xml:"INVOICES,omitempty" json:"INVOICES,omitempty"`
+	WEBHOOKS          []WEBHOOK  `xml:"WEBHOOKS,omitempty" json:"WEBHOOKS,omitempty"`
+	TEMPLATES         []TEMPLATE `xml:"TEMPLATES,omitempty" json:"TEMPLATES,omitempty"`
 }
 
 type FILTER struct {

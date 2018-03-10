@@ -8,7 +8,7 @@ type InvoiceCancel_Request struct {
 	INVOICE_ID string `xml:"INVOICE_ID,omitempty" json:"INVOICE_ID,omitempty"`
 }
 
-//Delete Invoice; NEED: INVOICE_ID RESPONSE: "STATUS", "INVOICE_NUMBER"
+//Cancel Invoice; NEED: INVOICE_ID RESPONSE: "STATUS"
 func (s *Initialization) Invoice_cancel(req InvoiceCancel_Request) (*FBAPI, error) {
 
 	var fastbillbody string
