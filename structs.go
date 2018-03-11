@@ -245,6 +245,24 @@ type ESTIMATE struct {
 	END_ESTIMATE_DATE      string `xml:"END_ESTIMATE_DATE,omitempty" json:"END_ESTIMATE_DATE,omitempty"`           //	Angebote bis zu einem bestimmten Datum
 }
 
+type EXPENSE struct {
+	INVOICE_ID     string    `xml:"INVOICE_ID,omitempty" json:"INVOICE_ID,omitempty"`         //	Rechnungs-ID
+	ORGANIZATION   string    `xml:"ORGANIZATION,omitempty" json:"ORGANIZATION,omitempty"`     //	Firmenname
+	INVOICE_NUMBER string    `xml:"INVOICE_NUMBER,omitempty" json:"INVOICE_NUMBER,omitempty"` //	Rechnungsnummer
+	INVOICE_DATE   string    `xml:"INVOICE_DATE,omitempty" json:"INVOICE_DATE,omitempty"`     //	Rechnungsdatum
+	DUE_DATE       string    `xml:"DUE_DATE,omitempty" json:"DUE_DATE,omitempty"`             //	Fälligkeitsdatum
+	PROJECT_ID     string    `xml:"PROJECT_ID,omitempty" json:"PROJECT_ID,omitempty"`         //	Eine bestimmte Projekt ID
+	CUSTOMER_ID    string    `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`       //	Eine bestimmte Kundennummer
+	SUB_TOTAL      string    `xml:"SUB_TOTAL,omitempty" json:"SUB_TOTAL,omitempty"`           //	Nettobetrag
+	VAT_TOTAL      string    `xml:"VAT_TOTAL,omitempty" json:"VAT_TOTAL,omitempty"`           //	Vorsteuerbetrag
+	TOTAL          string    `xml:"TOTAL,omitempty" json:"TOTAL,omitempty"`                   //	Gesamtmenge
+	PAID_DATE      string    `xml:"PAID_DATE,omitempty" json:"PAID_DATE,omitempty"`           //	Datum der Zahlung
+	CURRENCY_CODE  string    `xml:"CURRENCY_CODE,omitempty" json:"CURRENCY_CODE,omitempty"`   //	Standardwährung
+	COMMENT        string    `xml:"COMMENT,omitempty" json:"COMMENT,omitempty"`               //	Bemerkung
+	VAT_ITEMS      VAT_ITEMS `xml:"VAT_ITEMS,omitempty" json:"VAT_ITEMS,omitempty"`           //	Liste aller Artikel zu einem Datensatz
+	PAYMENT_INFO   string    `xml:"PAYMENT_INFO,omitempty" json:"PAYMENT_INFO,omitempty"`     //	Informationen zu Zahlung
+}
+
 //Recipient
 
 type RECIPIENT struct {
@@ -326,5 +344,13 @@ type DATA struct {
 	ESTIMATE_NUMBER                string    `xml:"ESTIMATE_NUMBER,omitempty" json:"ESTIMATE_NUMBER,omitempty"`                               //	Angebotsnummer
 	START_ESTIMATE_DATE            string    `xml:"START_ESTIMATE_DATE,omitempty" json:"START_ESTIMATE_DATE,omitempty"`                       //	Angebote ab einem bestimmten Datum
 	END_ESTIMATE_DATE              string    `xml:"END_ESTIMATE_DATE,omitempty" json:"END_ESTIMATE_DATE,omitempty"`                           //	Angebote bis zu einem bestimmten Datum
-	INVOICE_ITEM_ID                string    `xml:"INVOICE_ITEM_ID,omitempty" json:"INVOICE_ITEM_ID,omitempty"`
+	INVOICE_ITEM_ID                string    `xml:"INVOICE_ITEM_ID,omitempty" json:"INVOICE_ITEM_ID,omitempty"`                               //
+	INVOICE_NUMBER                 string    `xml:"INVOICE_NUMBER,omitempty" json:"INVOICE_NUMBER,omitempty"`                                 //	Rechnungsnumm
+	MONTH                          string    `xml:"MONTH,omitempty" json:"MONTH,omitempty"`                                                   //	Monat
+	YEAR                           string    `xml:"YEAR,omitempty" json:"YEAR,omitempty"`
+	DUE_DATE                       string    `xml:"DUE_DATE,omitempty" json:"DUE_DATE,omitempty"`     //	Fälligkeitsdatum
+	PROJECT_ID                     string    `xml:"PROJECT_ID,omitempty" json:"PROJECT_ID,omitempty"` //	Eine bestimmte Projekt ID
+	COMMENT                        string    `xml:"COMMENT,omitempty" json:"COMMENT,omitempty"`       //	Bemerkung
+	SUB_TOTAL                      string    `xml:"SUB_TOTAL,omitempty" json:"SUB_TOTAL,omitempty"`   // Required	Nettobetrag
+	VAT_TOTAL                      string    `xml:"VAT_TOTAL,omitempty" json:"VAT_TOTAL,omitempty"`   //	Vorsteuerbetrag                                                     //	Jahr
 }

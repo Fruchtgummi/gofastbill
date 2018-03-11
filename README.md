@@ -16,7 +16,6 @@ go get github.com/Fruchtgummi/gofastbill
 Here are the things you can do until now:
 
   * Authentication : Login => Email, API-Key | Login for Mobile and Add-Ons with => Email, Password | Type xml or json
-
   * Customer : get, create, update, delete
   * Contact : get, create, update, delete
   * Invoice : get, create, update, delete, complete, cancel, sign, sendbyemail, sendbypost, setpaid
@@ -24,16 +23,17 @@ Here are the things you can do until now:
   * Estimate : get, create, sendbyemail, creatinvoice, delete
   * Template : get
   * Item : get, delete
+  * Expense : get, create
+  * Document : get, create 
 
 
 cooming soon:
   
   * Recurring : get, create, update, delete
   * Revenue : get, create, setpaid, delete
-  * Expense : get, create
   * Project : get, create, update, delete
   * Time : get, create, update, delete
-  * Document : get, create 
+ 
   * Webhooks : get, create, delete (BETA)
 
 
@@ -62,27 +62,27 @@ you find out all Structs for request and response on "gofastbill"-object
 Authentication and GET a Customer
 -----------------------------------
 ~~~
-    //Initialisierung
-   
-    fastbill, err = gofastbill.Init("email@domain.com", "xxxxxf2f39ebe33418e4f173cxxxx05IdihIGYAxSiABUfXgMeMBExxxpBC4xxx", false, true, "json")
+	//Initialisierung
+	
+	fastbill, err = gofastbill.Init("email@domain.com", "xxxxxf2f39ebe33418e4f173cxxxx05IdihIGYAxSiABUfXgMeMBExxxpBC4xxx", false, true, "json")
 	
 	if err != nil {
 		log.Println(err)
 	}
-
+	
 	var x gofastbill.CustomerGet_Request
 	
 	
 	x.CUSTOMER_ID = "123456" //is CUSTOMER_ID empty you get all customers
 	
 	fbapi, err := fastbill.Customer_get(x)
-
+	
 	if err != nil {
 		log.Println(err)
 	}
-
+	
 	log.Println(fbapi)
-
+	
 	...
 
 
@@ -91,18 +91,18 @@ Authentication and GET a Customer
 Create a NEW Customer
 -----------------------------------
 ~~~	
-    var x gofastbill.CustomerCreate_Request
-
-	x.CUSTOMER_TYPE = "consumer" 							// or business
-	x.LAST_NAME = "Mustermann" 								// Required by consumer
-	x.ORGANIZATION = "Mustermann GmbH" 						//Required by business
-
+	var x gofastbill.CustomerCreate_Request
+	
+	x.CUSTOMER_TYPE = "consumer" 					// or business
+	x.LAST_NAME = "Mustermann" 						// Required by consumer
+	x.ORGANIZATION = "Mustermann GmbH" 				//Required by business
+	
 	fbapi, err := fastbill.Customer_create(x)
-
+	
 	if err != nil {
 		log.Println(err)
 	}
-
+	
 	log.Println(fbapi)
 
 ~~~~
@@ -112,12 +112,12 @@ Create a Invoice
 -----------------------------------
 ~~~	
 	var x gofastbill.InvoiceCreate_Request
-
+	
 	x.CUSTOMER_ID = "123456"
 	x.TEMPLATE_ID = "123456"
 	x.INTROTEXT = "I'm a example"
 	x.INVOICE_TITLE = "Title of Invoice"
-
+	
 	var y gofastbill.ITEMS
 	
 	//loop	
@@ -127,11 +127,11 @@ Create a Invoice
 	y.QUANTITY = "4"
 	y.UNIT_PRICE = "25.00"
 	y.VAT_PERCENT = "19"
-
+	
 	x.ITEMS = append(x.ITEMS, y)
-
+	
 	fbapi, err := fastbill.Invoice_create(x)
-
+	
 	if err != nil {
 		log.Println(err)
 	}

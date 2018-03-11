@@ -4,13 +4,13 @@ import (
 	"errors"
 )
 
-type ItemDeletet_Request struct {
+type ItemDelete_Request struct {
 	INVOICE_ITEM_ID string `xml:"INVOICE_ITEM_ID,omitempty" json:"INVOICE_ITEM_ID,omitempty"`
 }
 
 //Delete Invoice; NEED: INVOICE_ITEM_ID
 //RESPONSE: "STATUS"
-func (s *Initialization) Item_delete(req ItemDeletet_Request) (*FBAPI, error) {
+func (s *Initialization) Item_delete(req ItemDelete_Request) (*FBAPI, error) {
 
 	var fastbillbody string
 
