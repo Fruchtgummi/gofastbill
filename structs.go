@@ -281,6 +281,19 @@ type EXPENSE struct {
 	PAYMENT_INFO   string    `xml:"PAYMENT_INFO,omitempty" json:"PAYMENT_INFO,omitempty"`     //	Informationen zu Zahlung
 }
 
+type TIME struct {
+	TIME_ID          string `xml:"TIME_ID,omitempty" json:"TIME_ID,omitempty"`                   //ID eines bestimmten Zeiteintrags
+	CUSTOMER_ID      string `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`           //Eine bestimmte Kundennummer
+	PROJECT_ID       string `xml:"PROJECT_ID,omitempty" json:"PROJECT_ID,omitempty"`             //Eine bestimmte Projekt ID
+	INVOICE_ID       string `xml:"INVOICE_ID,omitempty" json:"INVOICE_ID,omitempty"`             //Rechnungs-ID
+	DATE             string `xml:"DATE,omitempty" json:"DATE,omitempty"`                         //Datum
+	START_TIME       string `xml:"START_TIME,omitempty" json:"START_TIME,omitempty"`             //Startzeit
+	END_TIME         string `xml:"END_TIME,omitempty" json:"END_TIME,omitempty"`                 //Endzeit
+	MINUTES          string `xml:"MINUTES,omitempty" json:"MINUTES,omitempty"`                   //Minuten
+	BILLABLE_MINUTES string `xml:"BILLABLE_MINUTES,omitempty" json:"BILLABLE_MINUTES,omitempty"` //Abrechenbare Minuten
+	COMMENT          string `xml:"COMMENT,omitempty" json:"COMMENT,omitempty"`                   //Bemerkung
+}
+
 //Recipient
 
 type RECIPIENT struct {
@@ -365,10 +378,17 @@ type DATA struct {
 	INVOICE_ITEM_ID                string    `xml:"INVOICE_ITEM_ID,omitempty" json:"INVOICE_ITEM_ID,omitempty"`                               //
 	INVOICE_NUMBER                 string    `xml:"INVOICE_NUMBER,omitempty" json:"INVOICE_NUMBER,omitempty"`                                 //	Rechnungsnumm
 	MONTH                          string    `xml:"MONTH,omitempty" json:"MONTH,omitempty"`                                                   //	Monat
-	YEAR                           string    `xml:"YEAR,omitempty" json:"YEAR,omitempty"`
-	DUE_DATE                       string    `xml:"DUE_DATE,omitempty" json:"DUE_DATE,omitempty"`     //	Fälligkeitsdatum
-	PROJECT_ID                     string    `xml:"PROJECT_ID,omitempty" json:"PROJECT_ID,omitempty"` //	Eine bestimmte Projekt ID
-	COMMENT                        string    `xml:"COMMENT,omitempty" json:"COMMENT,omitempty"`       //	Bemerkung
-	SUB_TOTAL                      string    `xml:"SUB_TOTAL,omitempty" json:"SUB_TOTAL,omitempty"`   // Required	Nettobetrag
-	VAT_TOTAL                      string    `xml:"VAT_TOTAL,omitempty" json:"VAT_TOTAL,omitempty"`   //	Vorsteuerbetrag                                                     //	Jahr
+	YEAR                           string    `xml:"YEAR,omitempty" json:"YEAR,omitempty"`                                                     //
+	DUE_DATE                       string    `xml:"DUE_DATE,omitempty" json:"DUE_DATE,omitempty"`                                             //	Fälligkeitsdatum
+	PROJECT_ID                     string    `xml:"PROJECT_ID,omitempty" json:"PROJECT_ID,omitempty"`                                         //	Eine bestimmte Projekt ID
+	COMMENT                        string    `xml:"COMMENT,omitempty" json:"COMMENT,omitempty"`                                               //	Bemerkung
+	SUB_TOTAL                      string    `xml:"SUB_TOTAL,omitempty" json:"SUB_TOTAL,omitempty"`                                           // Required	Nettobetrag
+	VAT_TOTAL                      string    `xml:"VAT_TOTAL,omitempty" json:"VAT_TOTAL,omitempty"`                                           //	Vorsteuerbetrag
+	DATE                           string    `xml:"DATE,omitempty" json:"DATE,omitempty"`                                                     //	Datum
+	TASK_ID                        string    `xml:"TASK_ID,omitempty" json:"TASK_ID,omitempty"`                                               //	ID einer bestimmten Aufgabe
+	START_TIME                     string    `xml:"START_TIME,omitempty" json:"START_TIME,omitempty"`                                         // Required	Startzeit
+	END_TIME                       string    `xml:"END_TIME,omitempty" json:"END_TIME,omitempty"`                                             //	Endzeit
+	MINUTES                        string    `xml:"MINUTES,omitempty" json:"MINUTES,omitempty"`                                               //	Minuten
+	BILLABLE_MINUTES               string    `xml:"BILLABLE_MINUTES,omitempty" json:"BILLABLE_MINUTES,omitempty"`                             //	Abrechenbare Minuten
+	TIME_ID                        string    `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`                                       //
 }

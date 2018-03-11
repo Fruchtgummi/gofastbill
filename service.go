@@ -45,6 +45,7 @@ type RESPONSE struct {
 	ARTICLES          []ARTICLE  `xml:"ARTICLES,omitempty" json:"ARTICLES,omitempty"`
 	ESTIMATES         []ESTIMATE `xml:"ESTIMATES,omitempty" json:"ESTIMATES,omitempty"`
 	ITEMS             ITEM       `xml:"ITEMS,omitempty" json:"ITEMS,omitempty"`
+	TIMES             []TIME     `xml:"TIMES,omitempty" json:"TIMES,omitempty"`
 }
 
 type FILTER struct {
@@ -68,6 +69,12 @@ type FILTER struct {
 	ESTIMATE_NUMBER     string `xml:"ESTIMATE_NUMBER,omitempty" json:"ESTIMATE_NUMBER,omitempty"`         //	Angebotsnummer
 	START_ESTIMATE_DATE string `xml:"START_ESTIMATE_DATE,omitempty" json:"START_ESTIMATE_DATE,omitempty"` //	Angebote ab einem bestimmten Datum
 	END_ESTIMATE_DATE   string `xml:"END_ESTIMATE_DATE,omitempty" json:"END_ESTIMATE_DATE,omitempty"`     //	Angebote bis zu einem bestimmten Datum
+	PROJECT_ID          string `xml:"PROJECT_ID,omitempty" json:"PROJECT_ID,omitempty"`                   // ID Eine bestimmte Projekt ID
+	TASK_ID             string `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`                 // ID einer bestimmten Aufgabe
+	TIME_ID             string `xml:"TASK_ID,omitempty" json:"TASK_ID,omitempty"`                         // ID eines bestimmten Zeiteintrags
+	START_DATE          string `xml:"START_DATE,omitempty" json:"START_DATE,omitempty"`                   //	Datum des ersten Rechnungslaufs
+	END_DATE            string `xml:"END_DATE,omitempty" json:"END_DATE,omitempty"`                       //	Enddatum
+	DATE                string `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`                 //	Datum`
 }
 
 type ERRORS struct {
