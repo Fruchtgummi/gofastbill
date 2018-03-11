@@ -141,6 +141,22 @@ type ITEMS struct {
 	COMPLETE_NET   float64 `xml:"COMPLETE_NET,omitempty" json:"COMPLETE_NET,omitempty"`     //Sortierungschlüssel der Rechnungsposition
 }
 
+type ITEM struct {
+	INVOICE_ITEM_ID string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	ID der Rechnungsposition
+	INVOICE_ID      string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	Rechnungs-ID
+	CUSTOMER_ID     string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	Eine bestimmte Kundennummer
+	ARTICLE_NUMBER  string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	Artikelnummer
+	DESCRIPTION     string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	Beschreibung
+	QUANTITY        string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	Anzahl
+	UNIT_PRICE      string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	Einzelpreis
+	VAT_PERCENT     string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	MwSt in Prozent
+	VAT_VALUE       string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	Mehrwertsteuerwert
+	COMPLETE_NET    string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	Gesamtnettobetrag
+	COMPLETE_GROSS  string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //
+	CURRENCY_CODE   string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	Standardwährung
+	SORT_ORDER      string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	Sortierschlüssel der Rechnungsposition
+}
+
 type PAYMENTS struct {
 	PAYMENT_ID    string `xml:"PAYMENT_ID,omitempty" json:"PAYMENT_ID,omitempty"`       //Zahlungs_id
 	DATE          string `xml:"DATE,omitempty" json:"DATE,omitempty"`                   //Datum
@@ -175,6 +191,66 @@ type TEMPLATE struct {
 	TEMPLATE_ID   int    `xml:"TEMPLATE_ID,omitempty" json:"TEMPLATE_ID,omitempty"`     //Tempalte ID
 	TEMPLATE_NAME string `xml:"TEMPLATE_NAME,omitempty" json:"TEMPLATE_NAME,omitempty"` //Vorlagenname
 	TEMPLATE_HASH string `xml:"TEMPLATE_HASH,omitempty" json:"TEMPLATE_HASH,omitempty"` //Eindeutige ID des Templates
+}
+
+type ARTICLE struct {
+	ARTICLE_ID     string `xml:"ARTICLE_ID,omitempty" json:"ARTICLE_ID,omitempty"`         //	Artikel ID
+	ARTICLE_NUMBER string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	Artikelnummer
+	TITLE          string `xml:"TITLE,omitempty" json:"TITLE,omitempty"`                   //	Titel
+	DESCRIPTION    string `xml:"DESCRIPTION,omitempty" json:"DESCRIPTION,omitempty"`       //	Beschreibung
+	UNIT           string `xml:"UNIT,omitempty" json:"UNIT,omitempty"`                     //	Produkt Einheitstyp
+	UNIT_PRICE     string `xml:"UNIT_PRICE,omitempty" json:"UNIT_PRICE,omitempty"`         //	Einzelpreis
+	CURRENCY_CODE  string `xml:"CURRENCY_CODE,omitempty" json:"CURRENCY_CODE,omitempty"`   //	Standardwährung
+	VAT_PERCENT    string `xml:"VAT_PERCENT,omitempty" json:"VAT_PERCENT,omitempty"`       //	MwSt in Prozent
+	TAGS           string `xml:"TAGS,omitempty" json:"TAGS,omitempty"`                     //
+}
+
+type ESTIMATE struct {
+	ESTIMATE_ID            string `xml:"ESTIMATE_ID,omitempty" json:"ESTIMATE_ID,omitempty"`                       //	Angebots-ID
+	STATE                  string `xml:"STATE,omitempty" json:"STATE,omitempty"`                                   //	Status: a = ueberweisung | b = lastschrift | c = bar | d = paypal | e = vorkasse
+	CUSTOMER_ID            string `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`                       //	Eine bestimmte Kundennummer
+	CUSTOMER_NUMBER        string `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"`               //	Eigene Kundennummer
+	CUSTOMER_COSTCENTER_ID string `xml:"CUSTOMER_COSTCENTER_ID,omitempty" json:"CUSTOMER_COSTCENTER_ID,omitempty"` //	ID der Kostenstelle
+	PROJECT_ID             string `xml:"PROJECT_ID,omitempty" json:"PROJECT_ID,omitempty"`                         //	Eine bestimmte Projekt ID
+	ORGANIZATION           string `xml:"ORGANIZATION,omitempty" json:"ORGANIZATION,omitempty"`                     //	Firmenname [REQUIRED] wenn customer_type = business
+	SALUTATION             string `xml:"SALUTATION,omitempty" json:"SALUTATION,omitempty"`                         //	Anrede: mr = Herr | mrs = Frau | family = Familie | "empty" = ohne Titel
+	FIRST_NAME             string `xml:"FIRST_NAME,omitempty" json:"FIRST_NAME,omitempty"`                         //	Vorname
+	LAST_NAME              string `xml:"LAST_NAME,omitempty" json:"LAST_NAME,omitempty"`                           //	Nachname
+	ADDRESS                string `xml:"ADDRESS,omitempty" json:"ADDRESS,omitempty"`                               //	Adresszeile 1
+	ADDRESS_2              string `xml:"ADDRESS_2,omitempty" json:"ADDRESS_2,omitempty"`                           //	Adresszeile 2
+	ZIPCODE                string `xml:"ZIPCODE,omitempty" json:"ZIPCODE,omitempty"`                               //	Postleitzahl
+	CITY                   string `xml:"CITY,omitempty" json:"CITY,omitempty"`                                     //	Stadt
+	PAYMENT_TYPE           string `xml:"PAYMENT_TYPE,omitempty" json:"PAYMENT_TYPE,omitempty"`                     //	1 = ueberweisung | 2 = lastschrift | 3 = bar | 4 = paypal | 5 = vorkasse | 6 = kreditkarte
+	BANK_NAME              string `xml:"BANK_NAME,omitempty" json:"BANK_NAME,omitempty"`                           //	Bankname
+	BANK_ACCOUNT_NUMBER    string `xml:"BANK_ACCOUNT_NUMBER,omitempty" json:"BANK_ACCOUNT_NUMBER,omitempty"`       //	Kontonummer
+	BANK_CODE              string `xml:"BANK_CODE,omitempty" json:"BANK_CODE,omitempty"`                           //	Bankleitzahl
+	BANK_ACCOUNT_OWNER     string `xml:"BANK_ACCOUNT_OWNER,omitempty" json:"BANK_ACCOUNT_OWNER,omitempty"`         //	Kontoinhaber
+	BANK_IBAN              string `xml:"BANK_IBAN,omitempty" json:"BANK_IBAN,omitempty"`                           //	IBAN
+	BANK_BIC               string `xml:"BANK_BIC,omitempty" json:"BANK_BIC,omitempty"`                             //	BIC
+	COUNTRY_CODE           string `xml:"COUNTRY_CODE,omitempty" json:"COUNTRY_CODE,omitempty"`                     //	Länder-Code (ISO 3166 ALPHA-2)
+	VAT_ID                 string `xml:"VAT_ID,omitempty" json:"VAT_ID,omitempty"`                                 //	USt-IdNr.
+	CURRENCY_CODE          string `xml:"CURRENCY_CODE,omitempty" json:"CURRENCY_CODE,omitempty"`                   //	Standardwährung
+	TEMPLATE_ID            string `xml:"TEMPLATE_ID,omitempty" json:"TEMPLATE_ID,omitempty"`                       //	Vorlage-ID
+	ESTIMATE_NUMBER        string `xml:"ESTIMATE_NUMBER,omitempty" json:"ESTIMATE_NUMBER,omitempty"`               //	Angebotsnummer
+	INTROTEXT              string `xml:"INTROTEXT,omitempty" json:"INTROTEXT,omitempty"`                           //	Einleitungstext
+	ESTIMATE_DATE          string `xml:"ESTIMATE_DATE,omitempty" json:"ESTIMATE_DATE,omitempty"`                   //	Angebote Datum
+	DUE_DATE               string `xml:"DUE_DATE,omitempty" json:"DUE_DATE,omitempty"`                             //	Fälligkeitsdatum
+	SUB_TOTAL              string `xml:"SUB_TOTAL,omitempty" json:"SUB_TOTAL,omitempty"`                           //	Nettobetrag
+	VAT_TOTAL              string `xml:"VAT_TOTAL,omitempty" json:"VAT_TOTAL,omitempty"`                           //	Vorsteuerbetrag
+	VAT_ITEMS              string `xml:"VAT_ITEMS,omitempty" json:"VAT_ITEMS,omitempty"`                           //	Liste aller Artikel zu einem Datensatz
+	ITEMS                  string `xml:"ITEMS,omitempty" json:"ITEMS,omitempty"`                                   //	Liste der Artikel
+	TOTAL                  string `xml:"TOTAL,omitempty" json:"TOTAL,omitempty"`                                   //	Gesamtmenge
+	DOCUMENT_URL           string `xml:"DOCUMENT_URL,omitempty" json:"DOCUMENT_URL,omitempty"`                     //	URL eines Dokuments
+	START_ESTIMATE_DATE    string `xml:"START_ESTIMATE_DATE,omitempty" json:"START_ESTIMATE_DATE,omitempty"`       //	Angebote ab einem bestimmten Datum
+	END_ESTIMATE_DATE      string `xml:"END_ESTIMATE_DATE,omitempty" json:"END_ESTIMATE_DATE,omitempty"`           //	Angebote bis zu einem bestimmten Datum
+}
+
+//Recipient
+
+type RECIPIENT struct {
+	TO  string `xml:"TO,omitempty" json:"TO,omitempty"`   //
+	CC  string `xml:"CC,omitempty" json:"CC,omitempty"`   //
+	BCC string `xml:"BCC,omitempty" json:"BCC,omitempty"` //
 }
 
 //Datastruct include all tags
@@ -237,5 +313,18 @@ type DATA struct {
 	SUBJECT                        string    `xml:"SUBJECT,omitempty" json:"SUBJECT,omitempty"`                                               //Betreff
 	MESSAGE                        string    `xml:"MESSAGE,omitempty" json:"MESSAGE,omitempty"`                                               //e-Mail Text
 	RECEIPT_CONFIRMATION           string    `xml:"RECEIPT_CONFIRMATION,omitempty" json:"RECEIPT_CONFIRMATION,omitempty"`                     //
-	PAID_DATE                      string    `xml:"PAID_DATE,omitempty" json:"PAID_DATE,omitempty"`
+	PAID_DATE                      string    `xml:"PAID_DATE,omitempty" json:"PAID_DATE,omitempty"`                                           //
+	ARTICLE_ID                     string    `xml:"ARTICLE_ID,omitempty" json:"ARTICLE_ID,omitempty"`                                         //	Artikel ID
+	ARTICLE_NUMBER                 string    `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"`                                 //	Artikelnummer
+	TITLE                          string    `xml:"TITLE,omitempty" json:"TITLE,omitempty"`                                                   //	Titel
+	DESCRIPTION                    string    `xml:"DESCRIPTION,omitempty" json:"DESCRIPTION,omitempty"`                                       //	Beschreibung
+	UNIT                           string    `xml:"UNIT,omitempty" json:"UNIT,omitempty"`                                                     //	Produkt Einheitstyp
+	UNIT_PRICE                     string    `xml:"UNIT_PRICE,omitempty" json:"UNIT_PRICE,omitempty"`                                         //	Einzelpreis
+	VAT_PERCENT                    string    `xml:"VAT_PERCENT,omitempty" json:"VAT_PERCENT,omitempty"`                                       //	MwSt in Prozent
+	TEMPLATE_NAME                  string    `xml:"TEMPLATE_NAME,omitempty" json:"TEMPLATE_NAME,omitempty"`                                   //Vorlagenname
+	ESTIMATE_ID                    string    `xml:"ESTIMATE_ID,omitempty" json:"ESTIMATE_ID,omitempty"`                                       //	Angebots-ID
+	ESTIMATE_NUMBER                string    `xml:"ESTIMATE_NUMBER,omitempty" json:"ESTIMATE_NUMBER,omitempty"`                               //	Angebotsnummer
+	START_ESTIMATE_DATE            string    `xml:"START_ESTIMATE_DATE,omitempty" json:"START_ESTIMATE_DATE,omitempty"`                       //	Angebote ab einem bestimmten Datum
+	END_ESTIMATE_DATE              string    `xml:"END_ESTIMATE_DATE,omitempty" json:"END_ESTIMATE_DATE,omitempty"`                           //	Angebote bis zu einem bestimmten Datum
+	INVOICE_ITEM_ID                string    `xml:"INVOICE_ITEM_ID,omitempty" json:"INVOICE_ITEM_ID,omitempty"`
 }

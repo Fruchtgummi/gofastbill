@@ -41,6 +41,9 @@ type RESPONSE struct {
 	INVOICES          []INVOICE  `xml:"INVOICES,omitempty" json:"INVOICES,omitempty"`
 	WEBHOOKS          []WEBHOOK  `xml:"WEBHOOKS,omitempty" json:"WEBHOOKS,omitempty"`
 	TEMPLATES         []TEMPLATE `xml:"TEMPLATES,omitempty" json:"TEMPLATES,omitempty"`
+	ARTICLES          []ARTICLE  `xml:"ARTICLES,omitempty" json:"ARTICLES,omitempty"`
+	ESTIMATES         []ESTIMATE `xml:"ESTIMATES,omitempty" json:"ESTIMATES,omitempty"`
+	ITEMS             []ITEM     `xml:"ITEMS,omitempty" json:"ITEMS,omitempty"`
 }
 
 type FILTER struct {
@@ -58,6 +61,7 @@ type FILTER struct {
 	START_DUE_DATE  string `xml:"START_DUE_DATE,omitempty" json:"START_DUE_DATE,omitempty"` //Rechnungen die nach einem bestimmten Datum fällig werden
 	END_DUE_DATE    string `xml:"END_DUE_DATE,omitempty" json:"END_DUE_DATE,omitempty"`     //Rechnungen die vor einem bestimmten Datum fällig werden
 	TYPE            string `xml:"TYPE,omitempty" json:"TYPE,omitempty"`                     //Zahlungsart
+	ARTICLE_NUMBER  string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //Artikelnummer
 }
 
 type ERRORS struct {

@@ -16,20 +16,21 @@ go get github.com/Fruchtgummi/gofastbill
 Here are the things you can do until now:
 
   * Authentication : Login => Email, API-Key | Login for Mobile and Add-Ons with => Email, Password | Type xml or json
+
   * Customer : get, create, update, delete
   * Contact : get, create, update, delete
   * Invoice : get, create, update, delete, complete, cancel, sign, sendbyemail, sendbypost, setpaid
+  * Article : get, create, update, delete
+  * Estimate : get, create, sendbyemail, creatinvoice, delete
   * Template : get
+  * Item : get, delete
 
 
 cooming soon:
-
-  * Estimate : get, create, sendbyemail, creatinvoice, delete
-  * Item : get, delete
+  
   * Recurring : get, create, update, delete
   * Revenue : get, create, setpaid, delete
   * Expense : get, create
-  * Article : get, create, update, delete
   * Project : get, create, update, delete
   * Time : get, create, update, delete
   * Document : get, create 

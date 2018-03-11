@@ -4,29 +4,25 @@ import (
 	"errors"
 )
 
-type InvoiceSetpaid_Request struct {
+type ItemGet_Request struct {
 	INVOICE_ID string `xml:"INVOICE_ID,omitempty" json:"INVOICE_ID,omitempty"`
-	PAID_DATE  string `xml:"PAID_DATE,omitempty" json:"PAID_DATE,omitempty"` //Datum der Zahlunf
 }
 
-//Setpaid Invoice; NEED: INVOICE_ID, PAID_DATE; RESPONSE: "STATUS", "INVOICE_NUMBER"
-func (s *Initialization) Invoice_setpaid(req InvoiceSetpaid_Request) (*FBAPI, error) {
+//Delete Invoice; NEED: INVOICE_ID
+//RESPONSE: all field of gofastbill.Item
+func (s *Initialization) Item_get(req ItemGet_Request) (*FBAPI, error) {
 
 	var fastbillbody string
+
 	var r FBAPI
 
-	r.SERVICE = "invoice.setpaid"
+	r.SERVICE = "item.get"
 
 	if req.INVOICE_ID == "" {
 		return nil, errors.New(s.Typ + ": INVOICE_ID is empty")
 	}
 
-	if req.PAID_DATE == "" {
-		return nil, errors.New(s.Typ + ": PAID_DATE is empty")
-	}
-
 	r.DATA.INVOICE_ID = req.INVOICE_ID
-	r.DATA.PAID_DATE = req.PAID_DATE
 
 	fastbillbody, err := s.GenerateRequest(r)
 	if err != nil {

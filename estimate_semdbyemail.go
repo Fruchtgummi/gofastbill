@@ -4,8 +4,8 @@ import (
 	"errors"
 )
 
-type InvoiceSendbyemail_Request struct {
-	INVOICE_ID           string    `xml:"INVOICE_ID,omitempty" json:"INVOICE_ID,omitempty"`                     //
+type EstimateSendbyemail_Request struct {
+	ESTIMATE_ID          string    `xml:"ESTIMATE_ID,omitempty" json:"ESTIMATE_ID,omitempty"`                   //
 	RECIPIENT            RECIPIENT `xml:"RECIPIENT,omitempty" json:"RECIPIENT,omitempty"`                       //Required	Empfänger
 	SUBJECT              string    `xml:"SUBJECT,omitempty" json:"SUBJECT,omitempty"`                           //Betreff
 	MESSAGE              string    `xml:"MESSAGE,omitempty" json:"MESSAGE,omitempty"`                           //e-Mail Text
@@ -13,24 +13,25 @@ type InvoiceSendbyemail_Request struct {
 
 }
 
-//Sendbyemail Invoice; NEED: INVOICE_ID, RECIPIENT{TO,CC,BCC}, SUBJECT, MESSAGE, RECEIPT_CONFIRMATION; RESPONSE: "STATUS", "INVOICE_NUMBER"
-func (s *Initialization) Invoice_sendbyemail(req InvoiceSendbyemail_Request) (*FBAPI, error) {
+//Sendbyemail Estimate; NEED: INVOICE_ID, RECIPIENT{TO,CC,BCC}, SUBJECT, MESSAGE, RECEIPT_CONFIRMATION;
+//RESPONSE: "STATUS", "INVOICE_NUMBER"
+func (s *Initialization) Estimate_sendbyemail(req EstimateSendbyemail_Request) (*FBAPI, error) {
 
 	var fastbillbody string
 
 	var r FBAPI
 
-	r.SERVICE = "invoice.sendbyemail"
+	r.SERVICE = "Estimate.sendbyemail"
 
-	if req.INVOICE_ID == "" {
-		return nil, errors.New(s.Typ + ": INVOICE_ID is empty")
+	if req.ESTIMATE_ID == "" {
+		return nil, errors.New(s.Typ + ": ESTIMATE_ID is empty")
 	}
 
 	if req.RECIPIENT.TO == "" {
 		return nil, errors.New(s.Typ + ": You need RECIPIENT at least TO")
 	}
 
-	r.DATA.INVOICE_ID = req.INVOICE_ID
+	r.DATA.ESTIMATE_ID = req.ESTIMATE_ID
 	r.DATA.SUBJECT = req.SUBJECT
 	r.DATA.MESSAGE = req.MESSAGE
 	r.DATA.RECEIPT_CONFIRMATION = req.RECEIPT_CONFIRMATION
