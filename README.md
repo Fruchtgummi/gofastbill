@@ -27,11 +27,11 @@ Here are the things you can do until now:
   * Expense : get, create **(TODO: Upload for paid document)**
   * Document : get, create **(TODO: Upload for document)**
   * Recurring : get, create, update, delete
+  * Revenue : get, create, setpaid, delete
 
 
 cooming soon:
   
-  * Revenue : get, create, setpaid, delete
   * Project : get, create, update, delete
   * Webhooks : get, create, delete (BETA)
 

@@ -294,6 +294,80 @@ type TIME struct {
 	COMMENT          string `xml:"COMMENT,omitempty" json:"COMMENT,omitempty"`                   //Bemerkung
 }
 
+type RECURRING struct {
+	INVOICE_ID             string    `xml:"INVOICE_ID,omitempty" json:"INVOICE_ID,omitempty"`                         //	Rechnungs-ID
+	TYPE                   string    `xml:"TYPE,omitempty" json:"TYPE,omitempty"`                                     //	Rechnungen eines bestimmten Typs: outgoing = Rechnungen draft = Entwürfe | credit = Gutschriften
+	CUSTOMER_ID            string    `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`                       //	Eine bestimmte Kundennummer
+	CUSTOMER_COSTCENTER_ID string    `xml:"CUSTOMER_COSTCENTER_ID,omitempty" json:"CUSTOMER_COSTCENTER_ID,omitempty"` //	ID der Kostenstelle
+	CURRENCY_CODE          string    `xml:"CURRENCY_CODE,omitempty" json:"CURRENCY_CODE,omitempty"`                   //	Standardwährung
+	TEMPLATE_ID            string    `xml:"TEMPLATE_ID,omitempty" json:"TEMPLATE_ID,omitempty"`                       //	Entwurfsnummer
+	INTROTEXT              string    `xml:"INTROTEXT,omitempty" json:"INTROTEXT,omitempty"`                           //	Einleitungstext
+	INVOICE_NUMBER         string    `xml:"INVOICE_NUMBER,omitempty" json:"INVOICE_NUMBER,omitempty"`                 //	Rechnungsnummer
+	PAID_DATE              string    `xml:"PAID_DATE,omitempty" json:"PAID_DATE,omitempty"`                           //	Datum der Zahlung
+	IS_CANCELED            string    `xml:"IS_CANCELED,omitempty" json:"IS_CANCELED,omitempty"`                       //	Flag für Stonierungsstatus: 0 = nein | 1 = ja
+	INVOICE_DATE           string    `xml:"INVOICE_DATE,omitempty" json:"INVOICE_DATE,omitempty"`                     //	Rechnungsdatum
+	DUE_DATE               string    `xml:"DUE_DATE,omitempty" json:"DUE_DATE,omitempty"`                             //	Fälligkeitsdatum
+	DELIVERY_DATE          string    `xml:"DELIVERY_DATE,omitempty" json:"DELIVERY_DATE,omitempty"`                   //	Lieferdatum
+	CASH_DISCOUNT_PERCENT  string    `xml:"CASH_DISCOUNT_PERCENT,omitempty" json:"CASH_DISCOUNT_PERCENT,omitempty"`   //	Skonto in Prozent
+	CASH_DISCOUNT_DAYS     string    `xml:"CASH_DISCOUNT_DAYS,omitempty" json:"CASH_DISCOUNT_DAYS,omitempty"`         //	Skonto-Zeitraum in Tagen
+	SUB_TOTAL              string    `xml:"SUB_TOTAL,omitempty" json:"SUB_TOTAL,omitempty"`                           //	Nettobetrag
+	VAT_TOTAL              string    `xml:"VAT_TOTAL,omitempty" json:"VAT_TOTAL,omitempty"`                           //	Vorsteuerbetrag
+	TOTAL                  string    `xml:"TOTAL,omitempty" json:"TOTAL,omitempty"`                                   //	Gesamtmenge
+	VAT_ITEMS              VAT_ITEMS `xml:"VAT_ITEMS,omitempty" json:"VAT_ITEMS,omitempty"`                           //	Liste aller Artikel zu einem Datensatz
+	ITEMS                  []ITEMS   `xml:"ITEMS,omitempty" json:"ITEMS,omitempty"`                                   //	Liste der Artikel
+}
+
+type REVENUE struct {
+	INVOICE_ID             string    `xml:"INVOICE_ID,omitempty" json:"INVOICE_ID,omitempty"`                         //	Rechnungs-ID
+	TYPE                   string    `xml:"TYPE,omitempty" json:"TYPE,omitempty"`                                     //	Rechnungen eines bestimmten Typs: outgoing = Rechnungen draft = Entwürfe | credit = Gutschriften
+	CUSTOMER_ID            string    `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`                       //	Eine bestimmte Kundennummer
+	CUSTOMER_NUMBER        string    `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"`               //	Eigene Kundennummer
+	CUSTOMER_COSTCENTER_ID string    `xml:"CUSTOMER_COSTCENTER_ID,omitempty" json:"CUSTOMER_COSTCENTER_ID,omitempty"` //	ID der Kostenstelle
+	PROJECT_ID             string    `xml:"PROJECT_ID,omitempty" json:"PROJECT_ID,omitempty"`                         //	Eine bestimmte Projekt ID
+	CURRENCY_CODE          string    `xml:"CURRENCY_CODE,omitempty" json:"CURRENCY_CODE,omitempty"`                   //	Standardwährung
+	DELIVERY_DATE          string    `xml:"DELIVERY_DATE,omitempty" json:"DELIVERY_DATE,omitempty"`                   //	Lieferdatum
+	INVOICE_TITLE          string    `xml:"INVOICE_TITLE,omitempty" json:"INVOICE_TITLE,omitempty"`                   //	Rechnungstitel
+	CASH_DISCOUNT_PERCENT  string    `xml:"CASH_DISCOUNT_PERCENT,omitempty" json:"CASH_DISCOUNT_PERCENT,omitempty"`   //	Skonto in Prozent
+	CASH_DISCOUNT_DAYS     string    `xml:"CASH_DISCOUNT_DAYS,omitempty" json:"CASH_DISCOUNT_DAYS,omitempty"`         //	Skonto-Zeitraum in Tagen
+	SUB_TOTAL              string    `xml:"SUB_TOTAL,omitempty" json:"SUB_TOTAL,omitempty"`                           //	Nettobetrag
+	VAT_TOTAL              string    `xml:"VAT_TOTAL,omitempty" json:"VAT_TOTAL,omitempty"`                           //	Vorsteuerbetrag
+	VAT_ITEMS              VAT_ITEMS `xml:"VAT_ITEMS,omitempty" json:"VAT_ITEMS,omitempty"`                           //	Liste aller Artikel zu einem Datensatz
+	ITEMS                  []ITEMS   `xml:"ITEMS,omitempty" json:"ITEMS,omitempty"`                                   //	Liste der Artikel
+	TOTAL                  string    `xml:"TOTAL,omitempty" json:"TOTAL,omitempty"`                                   //	Gesamtmenge
+	ORGANIZATION           string    `xml:"ORGANIZATION,omitempty" json:"ORGANIZATION,omitempty"`                     //	Firmenname [REQUIRED] wenn customer_type = business
+	SALUTATION             string    `xml:"SALUTATION,omitempty" json:"SALUTATION,omitempty"`                         //	Anrede: mr = Herr | mrs = Frau | family = Familie | "empty" = ohne Titel
+	FIRST_NAME             string    `xml:"FIRST_NAME,omitempty" json:"FIRST_NAME,omitempty"`                         //	Vorname
+	LAST_NAME              string    `xml:"LAST_NAME,omitempty" json:"LAST_NAME,omitempty"`                           //	Nachname
+	ADDRESS                string    `xml:"ADDRESS,omitempty" json:"ADDRESS,omitempty"`                               //	Adresszeile 1
+	ADDRESS_2              string    `xml:"ADDRESS_2,omitempty" json:"ADDRESS_2,omitempty"`                           //	Adresszeile 2
+	ZIPCODE                string    `xml:"ZIPCODE,omitempty" json:"ZIPCODE,omitempty"`                               //	Postleitzahl
+	CITY                   string    `xml:"CITY,omitempty" json:"CITY,omitempty"`                                     //	Stadt
+	PAYMENT_TYPE           string    `xml:"PAYMENT_TYPE,omitempty" json:"PAYMENT_TYPE,omitempty"`                     //	1 = ueberweisung | 2 = lastschrift | 3 = bar | 4 = paypal | 5 = vorkasse | 6 = kreditkarte
+	BANK_NAME              string    `xml:"BANK_NAME,omitempty" json:"BANK_NAME,omitempty"`                           //	Bankname
+	BANK_ACCOUNT_NUMBER    string    `xml:"BANK_ACCOUNT_NUMBER,omitempty" json:"BANK_ACCOUNT_NUMBER,omitempty"`       //	Kontonummer
+	BANK_CODE              string    `xml:"BANK_CODE,omitempty" json:"BANK_CODE,omitempty"`                           //	Bankleitzahl
+	BANK_ACCOUNT_OWNER     string    `xml:"BANK_ACCOUNT_OWNER,omitempty" json:"BANK_ACCOUNT_OWNER,omitempty"`         //	Kontoinhaber
+	BANK_IBAN              string    `xml:"BANK_IBAN,omitempty" json:"BANK_IBAN,omitempty"`                           //	IBAN
+	BANK_BIC               string    `xml:"BANK_BIC,omitempty" json:"BANK_BIC,omitempty"`                             //	BIC
+	COMMENTS               []COMMENT `xml:"COMMENTS,omitempty" json:"COMMENTS,omitempty"`                             //	Liste aller Kommentare zu einem Datensatz
+	COUNTRY_CODE           string    `xml:"COUNTRY_CODE,omitempty" json:"COUNTRY_CODE,omitempty"`                     //	Länder-Code (ISO 3166 ALPHA-2)
+	VAT_ID                 string    `xml:"VAT_ID,omitempty" json:"VAT_ID,omitempty"`                                 //	USt-IdNr.
+	TEMPLATE_ID            string    `xml:"TEMPLATE_ID,omitempty" json:"TEMPLATE_ID,omitempty"`                       //	Entwurfsnummer
+	INVOICE_NUMBER         string    `xml:"INVOICE_NUMBER,omitempty" json:"INVOICE_NUMBER,omitempty"`                 //	Rechnungsnummer
+	INTROTEXT              string    `xml:"INTROTEXT,omitempty" json:"INTROTEXT,omitempty"`                           //	Einleitungstext
+	PAID_DATE              string    `xml:"PAID_DATE,omitempty" json:"PAID_DATE,omitempty"`                           //	Datum der Zahlung
+	IS_CANCELED            string    `xml:"IS_CANCELED,omitempty" json:"IS_CANCELED,omitempty"`                       //	Flag für Stonierungsstatus: 0 = nein | 1 = ja
+	INVOICE_DATE           string    `xml:"INVOICE_DATE,omitempty" json:"INVOICE_DATE,omitempty"`                     //	Rechnungsdatum
+	DUE_DATE               string    `xml:"DUE_DATE,omitempty" json:"DUE_DATE,omitempty"`                             //	Fälligkeitsdatum
+	PAYMENT_INFO           string    `xml:"PAYMENT_INFO,omitempty" json:"PAYMENT_INFO,omitempty"`                     //	Informationen zu Zahlung
+	LASTUPDATE             string    `xml:"LASTUPDATE,omitempty" json:"LASTUPDATE,omitempty"`                         //	Datum der letzten Bearbeitung
+	DOCUMENT_URL           string    `xml:"DOCUMENT_URL,omitempty" json:"DOCUMENT_URL,omitempty"`                     //	URL eines Dokuments
+}
+
+type COMMENT struct {
+	COMMENT string
+}
+
 //Recipient
 
 type RECIPIENT struct {
