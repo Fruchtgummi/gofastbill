@@ -22,7 +22,7 @@ func (s *Initialization) Item_get(req ItemGet_Request) (*FBAPI, error) {
 		return nil, errors.New(s.Typ + ": INVOICE_ID is empty")
 	}
 
-	r.DATA.INVOICE_ID = req.INVOICE_ID
+	r.FILTER.INVOICE_ID = req.INVOICE_ID
 
 	fastbillbody, err := s.GenerateRequest(r)
 	if err != nil {

@@ -18,10 +18,10 @@ func (s *Initialization) Expense_get(req ExpenseGet_Request) (*FBAPI, error) {
 
 	r.SERVICE = "expense.get"
 
-	r.DATA.INVOICE_ID = req.INVOICE_ID
-	r.DATA.INVOICE_NUMBER = req.INVOICE_NUMBER
-	r.DATA.MONTH = req.MONTH
-	r.DATA.YEAR = req.YEAR
+	r.FILTER.INVOICE_ID = req.INVOICE_ID
+	r.FILTER.INVOICE_NUMBER = req.INVOICE_NUMBER
+	r.FILTER.MONTH = req.MONTH
+	r.FILTER.YEAR = req.YEAR
 
 	fastbillbody, err := s.GenerateRequest(r)
 	if err != nil {

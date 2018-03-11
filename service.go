@@ -22,7 +22,8 @@ type Initialization struct {
 	Email      string `json:"email"`
 	Apikey     string `json:"apikey"`
 	Serviceurl string `json:"serviceurl"`
-	Typ        string
+	Typ        string `json:"typ"`
+	Upload     bool   `json:"upload"`
 }
 
 type REQUEST struct {
@@ -43,25 +44,30 @@ type RESPONSE struct {
 	TEMPLATES         []TEMPLATE `xml:"TEMPLATES,omitempty" json:"TEMPLATES,omitempty"`
 	ARTICLES          []ARTICLE  `xml:"ARTICLES,omitempty" json:"ARTICLES,omitempty"`
 	ESTIMATES         []ESTIMATE `xml:"ESTIMATES,omitempty" json:"ESTIMATES,omitempty"`
-	ITEMS             []ITEM     `xml:"ITEMS,omitempty" json:"ITEMS,omitempty"`
+	ITEMS             ITEM       `xml:"ITEMS,omitempty" json:"ITEMS,omitempty"`
 }
 
 type FILTER struct {
-	CUSTOMER_ID     string `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`
-	CUSTOMER_NUMBER string `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"`
-	COUNTRY_CODE    string `xml:"COUNTRY_CODE,omitempty" json:"CUSTOMER_CODE,omitempty"`
-	CITY            string `xml:"CITY,omitempty" json:"CITY,omitempty"`
-	TERM            string `xml:"TERM,omitempty" json:"TERM,omitempty"`
-	CONTACT_ID      string `xml:"CONTACT_ID,omitempty" json:"CONTACT_ID,omitempty"`
-	INVOICE_ID      string `xml:"INVOICE_ID,omitempty" json:"INVOICE_ID,omitempty"`         //Rechnungs-ID
-	INVOICE_NUMBER  string `xml:"INVOICE_NUMBER,omitempty" json:"INVOICE_NUMBER,omitempty"` //Rechnungsnummer
-	INVOICE_TITLE   string `xml:"INVOICE_TITLE,omitempty" json:"INVOICE_TITLE,omitempty"`   //Rechnungstitel
-	MONTH           string `xml:"MONTH,omitempty" json:"MONTH,omitempty"`                   //Monat
-	YEAR            string `xml:"YEAR,omitempty" json:"YEAR,omitempty"`                     //Jahr
-	START_DUE_DATE  string `xml:"START_DUE_DATE,omitempty" json:"START_DUE_DATE,omitempty"` //Rechnungen die nach einem bestimmten Datum fällig werden
-	END_DUE_DATE    string `xml:"END_DUE_DATE,omitempty" json:"END_DUE_DATE,omitempty"`     //Rechnungen die vor einem bestimmten Datum fällig werden
-	TYPE            string `xml:"TYPE,omitempty" json:"TYPE,omitempty"`                     //Zahlungsart
-	ARTICLE_NUMBER  string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //Artikelnummer
+	CUSTOMER_ID         string `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`
+	CUSTOMER_NUMBER     string `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"`
+	COUNTRY_CODE        string `xml:"COUNTRY_CODE,omitempty" json:"CUSTOMER_CODE,omitempty"`
+	CITY                string `xml:"CITY,omitempty" json:"CITY,omitempty"`
+	TERM                string `xml:"TERM,omitempty" json:"TERM,omitempty"`
+	CONTACT_ID          string `xml:"CONTACT_ID,omitempty" json:"CONTACT_ID,omitempty"`
+	INVOICE_ID          string `xml:"INVOICE_ID,omitempty" json:"INVOICE_ID,omitempty"`                   //Rechnungs-ID
+	INVOICE_NUMBER      string `xml:"INVOICE_NUMBER,omitempty" json:"INVOICE_NUMBER,omitempty"`           //Rechnungsnummer
+	INVOICE_TITLE       string `xml:"INVOICE_TITLE,omitempty" json:"INVOICE_TITLE,omitempty"`             //Rechnungstitel
+	MONTH               string `xml:"MONTH,omitempty" json:"MONTH,omitempty"`                             //Monat
+	YEAR                string `xml:"YEAR,omitempty" json:"YEAR,omitempty"`                               //Jahr
+	START_DUE_DATE      string `xml:"START_DUE_DATE,omitempty" json:"START_DUE_DATE,omitempty"`           //Rechnungen die nach einem bestimmten Datum fällig werden
+	END_DUE_DATE        string `xml:"END_DUE_DATE,omitempty" json:"END_DUE_DATE,omitempty"`               //Rechnungen die vor einem bestimmten Datum fällig werden
+	TYPE                string `xml:"TYPE,omitempty" json:"TYPE,omitempty"`                               //Zahlungsart
+	ARTICLE_NUMBER      string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"`           //Artikelnummer
+	FOLDER_ID           string `xml:"FOLDER_ID,omitempty" json:"FOLDER_ID,omitempty"`                     //	Ordner-ID
+	ESTIMATE_ID         string `xml:"ESTIMATE_ID,omitempty" json:"ESTIMATE_ID,omitempty"`                 //	Angebots-ID
+	ESTIMATE_NUMBER     string `xml:"ESTIMATE_NUMBER,omitempty" json:"ESTIMATE_NUMBER,omitempty"`         //	Angebotsnummer
+	START_ESTIMATE_DATE string `xml:"START_ESTIMATE_DATE,omitempty" json:"START_ESTIMATE_DATE,omitempty"` //	Angebote ab einem bestimmten Datum
+	END_ESTIMATE_DATE   string `xml:"END_ESTIMATE_DATE,omitempty" json:"END_ESTIMATE_DATE,omitempty"`     //	Angebote bis zu einem bestimmten Datum
 }
 
 type ERRORS struct {
@@ -93,6 +99,7 @@ func Init(email string, apikey string, service bool, debugging bool, typ string)
 	init.Email = email
 	init.Apikey = apikey
 	init.Typ = typ
+	init.Upload = false
 
 	if !service {
 		init.Serviceurl = fastbill_plus
@@ -114,18 +121,26 @@ func (s *Initialization) FastbillRequest(xmlbody string) (*FBAPI, error) {
 		return nil, err
 	}
 	req.SetBasicAuth(s.Email, s.Apikey)
-	req.Header.Set("Content-Type", "application/json")
 
-	if s.Typ == "json" {
-
-		req.Header.Set("Content-Type", "application/json")
-	} else if s.Typ == "xml" {
-		req.Header.Set("Content-Type", "application/xml")
+	if s.Upload {
+		req.Header.Set("Content-Type", "multipart/form-data")
+		s.Upload = false
 	} else {
-		return nil, errors.New(s.Typ + ": Do you use JSON or XML!")
-	}
 
-	log.Println(body)
+		if s.Typ == "json" {
+			req.Header.Set("Content-Type", "application/json")
+		} else if s.Typ == "xml" {
+			req.Header.Set("Content-Type", "application/xml")
+		} else {
+			return nil, errors.New(s.Typ + ": Do you use JSON or XML!")
+		}
+	}
+	if debug != false {
+
+		log.Println("---- SEND-BODY ---")
+		log.Println(body)
+		log.Println("---- SEND-BODY END---")
+	}
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
@@ -140,7 +155,9 @@ func (s *Initialization) FastbillRequest(xmlbody string) (*FBAPI, error) {
 	}
 
 	if debug != false {
+		log.Println("---- RESPONSE ---")
 		log.Println(os.Stdout, string(buf))
+		log.Println("---- RESPONSE END ---")
 	}
 
 	if s.Typ == "json" {

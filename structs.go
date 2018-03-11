@@ -142,19 +142,21 @@ type ITEMS struct {
 }
 
 type ITEM struct {
-	INVOICE_ITEM_ID string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	ID der Rechnungsposition
-	INVOICE_ID      string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	Rechnungs-ID
-	CUSTOMER_ID     string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	Eine bestimmte Kundennummer
-	ARTICLE_NUMBER  string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	Artikelnummer
-	DESCRIPTION     string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	Beschreibung
-	QUANTITY        string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	Anzahl
-	UNIT_PRICE      string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	Einzelpreis
-	VAT_PERCENT     string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	MwSt in Prozent
-	VAT_VALUE       string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	Mehrwertsteuerwert
-	COMPLETE_NET    string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	Gesamtnettobetrag
-	COMPLETE_GROSS  string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //
-	CURRENCY_CODE   string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	Standardwährung
-	SORT_ORDER      string `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"` //	Sortierschlüssel der Rechnungsposition
+	INVOICE_ITEM_ID string                 `xml:"INVOICE_ITEM_ID,omitempty" json:"INVOICE_ITEM_ID,omitempty"` //	ID der Rechnungsposition
+	INVOICE_ID      string                 `xml:"INVOICE_ID,omitempty" json:"INVOICE_ID,omitempty"`           //	Rechnungs-ID
+	CUSTOMER_ID     string                 `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`         //	Eine bestimmte Kundennummer
+	ARTICLE_NUMBER  string                 `xml:"ARTICLE_NUMBER,omitempty" json:"ARTICLE_NUMBER,omitempty"`   //	Artikelnummer
+	DESCRIPTION     string                 `xml:"DESCRIPTION,omitempty" json:"DESCRIPTION,omitempty"`         //	Beschreibung
+	QUANTITY        string                 `xml:"QUANTITY,omitempty" json:"QUANTITY,omitempty"`               //	Anzahl
+	UNIT_PRICE      string                 `xml:"UNIT_PRICE,omitempty" json:"UNIT_PRICE,omitempty"`           //	Einzelpreis
+	VAT_PERCENT     string                 `xml:"VAT_PERCENT,omitempty" json:"VAT_PERCENT,omitempty"`         //	MwSt in Prozent
+	VAT_VALUE       float64                `xml:"VAT_VALUE,omitempty" json:"VAT_VALUE,omitempty"`             //	Mehrwertsteuerwert
+	COMPLETE_NET    float64                `xml:"COMPLETE_NET,omitempty" json:"COMPLETE_NET,omitempty"`       //	Gesamtnettobetrag
+	COMPLETE_GROSS  float64                `xml:"COMPLETE_GROSS,omitempty" json:"COMPLETE_GROSS,omitempty"`   //
+	CURRENCY_CODE   string                 `xml:"CURRENCY_CODE,omitempty" json:"CURRENCY_CODE,omitempty"`     //	Standardwährung
+	SORT_ORDER      float64                `xml:"SORT_ORDER,omitempty" json:"SORT_ORDER,omitempty"`           //	Sortierschlüssel der Rechnungsposition
+	DOCUMENTS       []DOCUMENT             `xml:"DOCUMENTS,omitempty" json:"ITEMS,omitempty"`
+	FOLDERS         map[string]interface{} `xml:"FOLDERS,omitempty" json:"FOLDERS,omitempty"`
 }
 
 type PAYMENTS struct {
@@ -174,7 +176,7 @@ type WEBHOOK struct {
 	EVENTS     string `xml:"EVENTS,omitempty" json:"EVENTS,omitempty"`         //Events: bei welchen Ereignissen wir er aktiviert. ("customer.created,customer.updated")
 }
 
-//Daten (Comma-separated values) der Events die dem Endpoint zugeordnet werden können:
+//Daten (Comma-separated values) der Events die dem Webhook-Endpoint zugeordnet werden können:
 //customer.created
 //customer.updated
 //customer.deleted
@@ -203,6 +205,22 @@ type ARTICLE struct {
 	CURRENCY_CODE  string `xml:"CURRENCY_CODE,omitempty" json:"CURRENCY_CODE,omitempty"`   //	Standardwährung
 	VAT_PERCENT    string `xml:"VAT_PERCENT,omitempty" json:"VAT_PERCENT,omitempty"`       //	MwSt in Prozent
 	TAGS           string `xml:"TAGS,omitempty" json:"TAGS,omitempty"`                     //
+}
+
+type FOLDER struct {
+	FOLDER_ID       string `xml:"FOLDER_ID,omitempty" json:"FOLDER_ID,omitempty"`             // ID des Ordners
+	NAME            string `xml:"NAME,omitempty" json:"NAME,omitempty"`                       // Name des Ordners
+	PARENTFOLDER_ID string `xml:"PARENTFOLDER_ID,omitempty" json:"PARENTFOLDER_ID,omitempty"` // ID des Parent-Odners
+	CREATED         string `xml:"CREATED,omitempty" json:"CREATED,omitempty"`                 // Datum der Erstellung
+	CONTENT_COUNT   string `xml:"CONTENT_COUNT,omitempty" json:"CONTENT_COUNT,omitempty"`     // Menge der enthaltenden Dateien
+}
+
+type DOCUMENT struct {
+	DOCUMENT_ID string `xml:"DOCUMENT_ID,omitempty" json:"DOCUMENT_ID,omitempty"` // ID des Dokuments
+	TYPE        string `xml:"TYPE,omitempty" json:"TYPE,omitempty"`               // Dokumententype
+	TITLE       string `xml:"TITLE,omitempty" json:"TITLE,omitempty"`             // Titel
+	DATE        string `xml:"DATE,omitempty" json:"DATE,omitempty"`               // Datum
+	NOTE        string `xml:"NOTE,omitempty" json:"NOTE,omitempty"`               // Bemerkung
 }
 
 type ESTIMATE struct {
