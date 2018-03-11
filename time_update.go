@@ -1,5 +1,9 @@
 package gofastbill
 
+import (
+	"errors"
+)
+
 type TimeUpdate_Request struct {
 	TIME_ID          string `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`           //
 	CUSTOMER_ID      string `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`           // Required	Eine bestimmte Kundennummer
@@ -13,11 +17,11 @@ type TimeUpdate_Request struct {
 	COMMENT          string `xml:"COMMENT,omitempty" json:"COMMENT,omitempty"`                   //	Bemerkung
 }
 
-//Create a new Time.
+//UPDATE a Time.
 //FILTER => All fields from Struct: gofastbill.TimeUpdate_Request
-//Required: CUSTOMER_ID, PRJOJECT_ID, START_TIME
+//Required: TIME_ID
 //RESPONSE:
-//STATUS, TIME_ID
+//COMMENT, TIME_ID
 func (s *Initialization) Time_update(req TimeUpdate_Request) (*FBAPI, error) {
 
 	var fastbillbody string

@@ -1,5 +1,9 @@
 package gofastbill
 
+import (
+	"errors"
+)
+
 type TimeCreate_Request struct {
 	CUSTOMER_ID      string `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`           // Required	Eine bestimmte Kundennummer
 	PROJECT_ID       string `xml:"PROJECT_ID,omitempty" json:"PROJECT_ID,omitempty"`             // Required	Eine bestimmte Projekt ID

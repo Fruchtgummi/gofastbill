@@ -23,6 +23,7 @@ Here are the things you can do until now:
   * Estimate : get, create, sendbyemail, creatinvoice, delete
   * Template : get
   * Item : get, delete
+  * Time : get, create, update, delete
   * Expense : get, create (TODO: Upload for paid document)
   * Document : get, create (TODO: Upload for document)
 
@@ -32,7 +33,6 @@ cooming soon:
   * Recurring : get, create, update, delete
   * Revenue : get, create, setpaid, delete
   * Project : get, create, update, delete
-  * Time : get, create, update, delete
   * Webhooks : get, create, delete (BETA)
 
 
