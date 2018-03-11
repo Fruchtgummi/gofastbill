@@ -34,18 +34,22 @@ type REQUEST struct {
 }
 
 type RESPONSE struct {
-	STATUS            string     `xml:"STATUS,omitempty" json:"STATUS,omitempty"`
-	CUSTOMER_ID       string     `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`
-	REMAINING_CREDITS string     `xml:"REMAINING_CREDITS,omitempty" json:"REMAINING_CREDITS,omitempty"`
-	CUSTOMERS         []CUSTOMER `xml:"CUSTOMERS,omitempty" json:"CUSTOMERS,omitempty"`
-	CONTACTS          []CONTACT  `xml:"CONTACTS,omitempty" json:"CONTACTS,omitempty"`
-	INVOICES          []INVOICE  `xml:"INVOICES,omitempty" json:"INVOICES,omitempty"`
-	WEBHOOKS          []WEBHOOK  `xml:"WEBHOOKS,omitempty" json:"WEBHOOKS,omitempty"`
-	TEMPLATES         []TEMPLATE `xml:"TEMPLATES,omitempty" json:"TEMPLATES,omitempty"`
-	ARTICLES          []ARTICLE  `xml:"ARTICLES,omitempty" json:"ARTICLES,omitempty"`
-	ESTIMATES         []ESTIMATE `xml:"ESTIMATES,omitempty" json:"ESTIMATES,omitempty"`
-	ITEMS             ITEM       `xml:"ITEMS,omitempty" json:"ITEMS,omitempty"`
-	TIMES             []TIME     `xml:"TIMES,omitempty" json:"TIMES,omitempty"`
+	STATUS            string      `xml:"STATUS,omitempty" json:"STATUS,omitempty"`
+	CUSTOMER_ID       string      `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`
+	REMAINING_CREDITS string      `xml:"REMAINING_CREDITS,omitempty" json:"REMAINING_CREDITS,omitempty"`
+	CUSTOMERS         []CUSTOMER  `xml:"CUSTOMERS,omitempty" json:"CUSTOMERS,omitempty"`
+	CONTACTS          []CONTACT   `xml:"CONTACTS,omitempty" json:"CONTACTS,omitempty"`
+	INVOICES          []INVOICE   `xml:"INVOICES,omitempty" json:"INVOICES,omitempty"`
+	WEBHOOKS          []WEBHOOK   `xml:"WEBHOOKS,omitempty" json:"WEBHOOKS,omitempty"`
+	TEMPLATES         []TEMPLATE  `xml:"TEMPLATES,omitempty" json:"TEMPLATES,omitempty"`
+	ARTICLES          []ARTICLE   `xml:"ARTICLES,omitempty" json:"ARTICLES,omitempty"`
+	ESTIMATES         []ESTIMATE  `xml:"ESTIMATES,omitempty" json:"ESTIMATES,omitempty"`
+	ITEMS             ITEM        `xml:"ITEMS,omitempty" json:"ITEMS,omitempty"`
+	TIMES             []TIME      `xml:"TIMES,omitempty" json:"TIMES,omitempty"`
+	TASKS             []TASK      `xml:"TASKS,omitempty" json:"TASKS,omitempty"`
+	PROJECTS          []PROJECT   `xml:"PROJECTS,omitempty" json:"PROJECTS,omitempty"`
+	REVENUES          []REVENUE   `xml:"REVENUES,omitempty" json:"REVENUES,omitempty"`
+	RECURRINGS        []RECURRING `xml:"RECURRINGS,omitempty" json:"RECURRINGS,omitempty"`
 }
 
 type FILTER struct {

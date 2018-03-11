@@ -28,11 +28,10 @@ Here are the things you can do until now:
   * Document : get, create **(TODO: Upload for document)**
   * Recurring : get, create, update, delete
   * Revenue : get, create, setpaid, delete
-
+  * Project : get, create, update, delete
 
 cooming soon:
   
-  * Project : get, create, update, delete
   * Webhooks : get, create, delete (BETA)
 
 

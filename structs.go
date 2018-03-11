@@ -364,6 +364,31 @@ type REVENUE struct {
 	DOCUMENT_URL           string    `xml:"DOCUMENT_URL,omitempty" json:"DOCUMENT_URL,omitempty"`                     //	URL eines Dokuments
 }
 
+type PROJECT struct {
+	PROJECT_ID             string `xml:"PROJECT_ID,omitempty" json:"PROJECT_ID,omitempty"`                         //	Eine bestimmte Projekt ID
+	PROJECT_NAME           string `xml:"PROJECT_NAME,omitempty" json:"PROJECT_NAME,omitempty"`                     //	Projektname
+	CUSTOMER_ID            string `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`                       //	Eine bestimmte Kundennummer
+	CUSTOMER_COSTCENTER_ID string `xml:"CUSTOMER_COSTCENTER_ID,omitempty" json:"CUSTOMER_COSTCENTER_ID,omitempty"` //	ID der Kostenstelle
+	HOUR_PRICE             string `xml:"HOUR_PRICE,omitempty" json:"HOUR_PRICE,omitempty"`                         //	Stundensatz
+	CURRENCY_CODE          string `xml:"CURRENCY_CODE,omitempty" json:"CURRENCY_CODE,omitempty"`                   //	Standardwährung
+	VAT_PERCENT            string `xml:"VAT_PERCENT,omitempty" json:"VAT_PERCENT,omitempty"`                       //	MwSt in Prozent
+	START_DATE             string `xml:"START_DATE,omitempty" json:"START_DATE,omitempty"`                         //	Datum des ersten Rechnungslaufs
+	END_DATE               string `xml:"END_DATE,omitempty" json:"END_DATE,omitempty"`                             //	Enddatum
+	TASKS                  []TASK `xml:"DOCUMENT_URL,omitempty" json:"DOCUMENT_URL,omitempty"`                     //	Liste der Aufgaben
+}
+
+type TASK struct {
+	TASK_ID       string `xml:"END_DATE,omitempty" json:"END_DATE,omitempty"` //ID einer bestimmten Aufagbe
+	TASK_NUMBER   string `xml:"END_DATE,omitempty" json:"END_DATE,omitempty"` //
+	TASK_NAME     string `xml:"END_DATE,omitempty" json:"END_DATE,omitempty"` //
+	DESCRIPTION   string `xml:"END_DATE,omitempty" json:"END_DATE,omitempty"` // Beschreibung
+	STATUS        string `xml:"END_DATE,omitempty" json:"END_DATE,omitempty"` // Ergebnis einer Aktion
+	PRIORITY      string `xml:"END_DATE,omitempty" json:"END_DATE,omitempty"` //
+	HOUR_PRICE    string `xml:"END_DATE,omitempty" json:"END_DATE,omitempty"` // Stundensatz
+	CURRENCY_CODE string `xml:"END_DATE,omitempty" json:"END_DATE,omitempty"` // Standardwährung
+	VAR_PERCENT   string `xml:"END_DATE,omitempty" json:"END_DATE,omitempty"` // MwSt in %
+}
+
 type COMMENT struct {
 	COMMENT string
 }
@@ -471,5 +496,7 @@ type DATA struct {
 	OCCURENCES   string `xml:"OCCURENCES,omitempty" json:"OCCURENCES,omitempty"`     //	Anzahl der wiederkehrenden Rechnungen: 0 = unbegrenzt
 	OUTPUT_TYPE  string `xml:"OUTPUT_TYPE,omitempty" json:"OUTPUT_TYPE,omitempty"`   // Required	Typ der automatisch zu erzeugenden Rechnung: draft = Entwurf | Outgoing = Rechnung
 	EMAIL_NOTIFY string `xml:"EMAIL_NOTIFY,omitempty" json:"EMAIL_NOTIFY,omitempty"` //	Flag für den Versand an die eigene e-Mailadresse: 0 = nein | 1 = ja
-
+	PROJECT_NAME string `xml:"EMAIL_NOTIFY,omitempty" json:"EMAIL_NOTIFY,omitempty"` //Name für ein Projekt
+	HOUR_PRICE   string `xml:"HOUR_PRICE,omitempty" json:"HOUR_PRICE,omitempty"`     //	Stundensatz
+	END_DATE     string `xml:"END_DATE,omitempty" json:"END_DATE,omitempty"`         //	Enddatum
 }
