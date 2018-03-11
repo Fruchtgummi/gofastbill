@@ -390,5 +390,12 @@ type DATA struct {
 	END_TIME                       string    `xml:"END_TIME,omitempty" json:"END_TIME,omitempty"`                                             //	Endzeit
 	MINUTES                        string    `xml:"MINUTES,omitempty" json:"MINUTES,omitempty"`                                               //	Minuten
 	BILLABLE_MINUTES               string    `xml:"BILLABLE_MINUTES,omitempty" json:"BILLABLE_MINUTES,omitempty"`                             //	Abrechenbare Minuten
-	TIME_ID                        string    `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`                                       //
+	TIME_ID                        string    `xml:"TIME_ID,omitempty" json:"TIME_ID,omitempty"`                                               //
+
+	START_DATE   string `xml:"START_DATE,omitempty" json:"START_DATE,omitempty"`     // Required	Datum des ersten Rechnungslaufs
+	FREQUENCY    string `xml:"FREQUENCY,omitempty" json:"FREQUENCY,omitempty"`       // Required	Wiederholrate des Rechnungslauf: Weekly = wöchentlich | 2 weeks = alle 2 Wochen | 4 weeks = alle 4 Wochen | monthly = monatlich | 2 months = alle 2 Monate | 3 months = vierteljährlich | 6 months = alle 6 Monate| yearly = jährlich| 2 years = alle 2 Jahre
+	OCCURENCES   string `xml:"OCCURENCES,omitempty" json:"OCCURENCES,omitempty"`     //	Anzahl der wiederkehrenden Rechnungen: 0 = unbegrenzt
+	OUTPUT_TYPE  string `xml:"OUTPUT_TYPE,omitempty" json:"OUTPUT_TYPE,omitempty"`   // Required	Typ der automatisch zu erzeugenden Rechnung: draft = Entwurf | Outgoing = Rechnung
+	EMAIL_NOTIFY string `xml:"EMAIL_NOTIFY,omitempty" json:"EMAIL_NOTIFY,omitempty"` //	Flag für den Versand an die eigene e-Mailadresse: 0 = nein | 1 = ja
+
 }
