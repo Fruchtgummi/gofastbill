@@ -5,15 +5,15 @@ import (
 )
 
 type ExpenseCreate_Request struct {
-	INVOICE_DATE   string `xml:"INVOICE_DATE,omitempty" json:"INVOICE_DATE,omitempty"`     // Required	Rechnungsdatum
-	DUE_DATE       string `xml:"DUE_DATE,omitempty" json:"DUE_DATE,omitempty"`             //	Fälligkeitsdatum
-	PROJECT_ID     string `xml:"PROJECT_ID,omitempty" json:"PROJECT_ID,omitempty"`         //	Eine bestimmte Projekt ID
-	CUSTOMER_ID    string `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`       //	Eine bestimmte Kundennummer
-	ORGANIZATION   string `xml:"ORGANIZATION,omitempty" json:"ORGANIZATION,omitempty"`     // Required	Firmenname
-	INVOICE_NUMBER string `xml:"INVOICE_NUMBER,omitempty" json:"INVOICE_NUMBER,omitempty"` //	Rechnungsnummer
-	COMMENT        string `xml:"COMMENT,omitempty" json:"COMMENT,omitempty"`               //	Bemerkung
-	SUB_TOTAL      string `xml:"SUB_TOTAL,omitempty" json:"SUB_TOTAL,omitempty"`           // Required	Nettobetrag
-	VAT_TOTAL      string `xml:"VAT_TOTAL,omitempty" json:"VAT_TOTAL,omitempty"`           //	Vorsteuerbetrag
+	INVOICE_DATE   string  `xml:"INVOICE_DATE,omitempty" json:"INVOICE_DATE,omitempty"`     // Required	Rechnungsdatum
+	DUE_DATE       string  `xml:"DUE_DATE,omitempty" json:"DUE_DATE,omitempty"`             //	Fälligkeitsdatum
+	PROJECT_ID     string  `xml:"PROJECT_ID,omitempty" json:"PROJECT_ID,omitempty"`         //	Eine bestimmte Projekt ID
+	CUSTOMER_ID    string  `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`       //	Eine bestimmte Kundennummer
+	ORGANIZATION   string  `xml:"ORGANIZATION,omitempty" json:"ORGANIZATION,omitempty"`     // Required	Firmenname
+	INVOICE_NUMBER string  `xml:"INVOICE_NUMBER,omitempty" json:"INVOICE_NUMBER,omitempty"` //	Rechnungsnummer
+	COMMENT        string  `xml:"COMMENT,omitempty" json:"COMMENT,omitempty"`               //	Bemerkung
+	SUB_TOTAL      float64 `xml:"SUB_TOTAL,omitempty" json:"SUB_TOTAL,omitempty"`           // Required	Nettobetrag
+	VAT_TOTAL      float64 `xml:"VAT_TOTAL,omitempty" json:"VAT_TOTAL,omitempty"`           //	Vorsteuerbetrag
 }
 
 //CREATE Estimate
@@ -37,7 +37,7 @@ func (s *Initialization) Expense_create(req ExpenseCreate_Request) (*FBAPI, erro
 		return nil, errors.New(s.Typ + ": ORGANIZATION must not be empty")
 	}
 
-	if req.SUB_TOTAL == "" {
+	if req.SUB_TOTAL == 0 {
 		return nil, errors.New(s.Typ + ": SUB_TOTAL must not be empty")
 	}
 

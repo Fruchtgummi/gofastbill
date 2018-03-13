@@ -6,14 +6,14 @@ import (
 )
 
 type RevenueCreate_Request struct {
-	INVOICE_DATE   string `xml:"INVOICE_DATE,omitempty" json:"INVOICE_DATE,omitempty"`     // Required	Rechnungsdatum
-	DUE_DATE       string `xml:"DUE_DATE,omitempty" json:"DUE_DATE,omitempty"`             //	Fälligkeitsdatum
-	CUSTOMER_ID    string `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`       // Required	Eine bestimmte Kundennummer
-	INVOICE_NUMBER string `xml:"INVOICE_NUMBER,omitempty" json:"INVOICE_NUMBER,omitempty"` //	Rechnungsnummer
-	COMMENT        string `xml:"COMMENT,omitempty" json:"COMMENT,omitempty"`               //
-	SUB_TOTAL      string `xml:"SUB_TOTAL,omitempty" json:"SUB_TOTAL,omitempty"`           // Required	Nettobetrag
-	VAT_TOTAL      string `xml:"VAT_TOTAL,omitempty" json:"VAT_TOTAL,omitempty"`           //	Vorsteuerbetrag
-	CURRENCY_CODE  string `xml:"CURRENCY_CODE,omitempty" json:"CURRENCY_CODE,omitempty"`   //	Standardwährung
+	INVOICE_DATE   string  `xml:"INVOICE_DATE,omitempty" json:"INVOICE_DATE,omitempty"`     // Required	Rechnungsdatum
+	DUE_DATE       string  `xml:"DUE_DATE,omitempty" json:"DUE_DATE,omitempty"`             //	Fälligkeitsdatum
+	CUSTOMER_ID    string  `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`       // Required	Eine bestimmte Kundennummer
+	INVOICE_NUMBER string  `xml:"INVOICE_NUMBER,omitempty" json:"INVOICE_NUMBER,omitempty"` //	Rechnungsnummer
+	COMMENT        string  `xml:"COMMENT,omitempty" json:"COMMENT,omitempty"`               //
+	SUB_TOTAL      float64 `xml:"SUB_TOTAL,omitempty" json:"SUB_TOTAL,omitempty"`           // Required	Nettobetrag
+	VAT_TOTAL      float64 `xml:"VAT_TOTAL,omitempty" json:"VAT_TOTAL,omitempty"`           //	Vorsteuerbetrag
+	CURRENCY_CODE  string  `xml:"CURRENCY_CODE,omitempty" json:"CURRENCY_CODE,omitempty"`   //	Standardwährung
 
 }
 
@@ -37,7 +37,7 @@ func (s *Initialization) Revenue_create(req RevenueCreate_Request) (*FBAPI, erro
 		return nil, errors.New(s.Typ + ": Missing CUSTOMER_ID is empty")
 	}
 
-	if req.SUB_TOTAL == "" {
+	if req.SUB_TOTAL == 0 {
 		return nil, errors.New(s.Typ + ": Missing SUB_TOTAL is empty")
 	}
 

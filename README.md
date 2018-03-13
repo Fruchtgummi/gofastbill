@@ -33,9 +33,10 @@ Here are the things you can do until now:
 cooming soon:
   
   * Webhooks : get, create, delete (BETA)
+  * GO-Routines (threads)
+  * Chan (Stats) 
 
-
-Additional Features
+Features
 -------------------
   * Minimal Models with hooks
   * Authentication (https://gowalker.org/github.com/Fruchtgummi/gofastbill#Init, Connect with Email & API-Key or as Mobile & Add-On with Email & Passwort)
@@ -120,13 +121,15 @@ Create a Invoice
 	
 	//loop	
 	
-	y.ARTICLE_NUMBER = "1234567"
-	y.DESCRIPTION = "I'm a description of ITEM"
-	y.QUANTITY = "4"
-	y.UNIT_PRICE = "25.00"
-	y.VAT_PERCENT = "19"
+		y.ARTICLE_NUMBER = "1234567"
+		y.DESCRIPTION = "I'm a description of ITEM"
+		y.QUANTITY = "4"
+		y.UNIT_PRICE = "25.00"
+		y.VAT_PERCENT = "19"
+		
+		x.ITEMS = append(x.ITEMS, y)
 	
-	x.ITEMS = append(x.ITEMS, y)
+	//loop end
 	
 	fbapi, err := fastbill.Invoice_create(x)
 	

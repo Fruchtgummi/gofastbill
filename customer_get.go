@@ -1,5 +1,8 @@
 package gofastbill
 
+//	"log"
+//"reflect"
+
 type CustomerGet_Request struct {
 	CUSTOMER_ID     string `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`
 	CUSTOMER_NUMBER string `xml:"CUSTOMER_NUMBER,omitempty" json:"CUSTOMER_NUMBER,omitempty"`
@@ -10,6 +13,8 @@ type CustomerGet_Request struct {
 
 //GET Customer
 //FILTER => CITY, COUNTRY_CODE, CUSTOMER_ID, CUSTOMER_NUMBER and TERM as atributte
+//TERM:
+//Search in on this fields: ORGANIZATION, FIRST_NAME, LAST_NAME, ADDRESS, ADDRESS_2, ZIPCODE, EMAIL, TAGS
 //Querying the details of one or more customers. If no filter is set, 10 customers will be returned. When LIMIT is set, up to 100 customers are possible.
 func (s *Initialization) Customer_get(req CustomerGet_Request) (*FBAPI, error) {
 

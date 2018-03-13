@@ -74,11 +74,11 @@ type FILTER struct {
 	START_ESTIMATE_DATE string `xml:"START_ESTIMATE_DATE,omitempty" json:"START_ESTIMATE_DATE,omitempty"` //	Angebote ab einem bestimmten Datum
 	END_ESTIMATE_DATE   string `xml:"END_ESTIMATE_DATE,omitempty" json:"END_ESTIMATE_DATE,omitempty"`     //	Angebote bis zu einem bestimmten Datum
 	PROJECT_ID          string `xml:"PROJECT_ID,omitempty" json:"PROJECT_ID,omitempty"`                   // ID Eine bestimmte Projekt ID
-	TASK_ID             string `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`                 // ID einer bestimmten Aufgabe
-	TIME_ID             string `xml:"TASK_ID,omitempty" json:"TASK_ID,omitempty"`                         // ID eines bestimmten Zeiteintrags
+	TASK_ID             string `xml:"TASK_ID,omitempty" json:"TASK_ID,omitempty"`                         // ID einer bestimmten Aufgabe
+	TIME_ID             string `xml:"TIME_ID,omitempty" json:"TIME_ID,omitempty"`                         // ID eines bestimmten Zeiteintrags
 	START_DATE          string `xml:"START_DATE,omitempty" json:"START_DATE,omitempty"`                   //	Datum des ersten Rechnungslaufs
 	END_DATE            string `xml:"END_DATE,omitempty" json:"END_DATE,omitempty"`                       //	Enddatum
-	DATE                string `xml:"CUSTOMER_ID,omitempty" json:"CUSTOMER_ID,omitempty"`                 //	Datum`
+	DATE                string `xml:"DATE,omitempty" json:"DATE,omitempty"`                               //	Datum`
 }
 
 type ERRORS struct {
@@ -147,10 +147,11 @@ func (s *Initialization) FastbillRequest(xmlbody string) (*FBAPI, error) {
 		}
 	}
 	if debug != false {
-
+		log.Println(" ")
 		log.Println("---- SEND-BODY ---")
 		log.Println(body)
 		log.Println("---- SEND-BODY END---")
+		log.Println(" ")
 	}
 
 	resp, err := http.DefaultClient.Do(req)
@@ -166,9 +167,11 @@ func (s *Initialization) FastbillRequest(xmlbody string) (*FBAPI, error) {
 	}
 
 	if debug != false {
+		log.Println(" ")
 		log.Println("---- RESPONSE ---")
 		log.Println(os.Stdout, string(buf))
 		log.Println("---- RESPONSE END ---")
+		log.Println(" ")
 	}
 
 	if s.Typ == "json" {

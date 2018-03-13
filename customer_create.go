@@ -45,6 +45,7 @@ type CustomerCreate_Request struct {
 //FILTER => All fields from Struct: gofastbill.CustomerCreate_Request
 //Required:
 //CUSTOMER_TYPE (Customer type: business | consumer), ORGANIZATION (Company name [REQUIRED] if CUSTOMER_TYPE = business), LAST_NAME (Last name [REQUIRED] if CUSTOMER_TYPE = consumer)
+//All COUNTRY_CODE find on https://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste
 func (s *Initialization) Customer_create(req CustomerCreate_Request) (*FBAPI, error) {
 
 	var fastbillbody string

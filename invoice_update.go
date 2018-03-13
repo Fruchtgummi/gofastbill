@@ -30,7 +30,6 @@ type InvoiceUpdate_Request struct {
 func (s *Initialization) Invoice_update(req InvoiceUpdate_Request) (*FBAPI, error) {
 
 	var fastbillbody string
-
 	var r FBAPI
 
 	r.SERVICE = "invoice.update"
